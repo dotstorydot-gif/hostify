@@ -79,7 +79,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - hostifyold/assets/images/
+    - assets/legacy/images/
+
 
   fonts:
     - family: Inter
