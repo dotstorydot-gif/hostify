@@ -21,7 +21,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyPlaceholderWebKey',
+    apiKey: 'AIzaSyPlaceholderWebKeyxxxxxxxxxxxxxxxx',
     appId: '1:409314884131:web:4caff5d0200d90f5bc0f96',
     messagingSenderId: '409314884131',
     projectId: 'hostify-10c0f',
@@ -30,7 +30,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyPlaceholderAndroidKey',
+    apiKey: 'AIzaSyPlaceholderAndroidKeyxxxxxxxxxxxx',
     appId: '1:409314884131:android:a696eda49d3f7114bc0f96',
     messagingSenderId: '409314884131',
     projectId: 'hostify-10c0f',
@@ -38,7 +38,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyPlaceholderIosKey',
+    apiKey: 'AIzaSyPlaceholderIosKeyxxxxxxxxxxxxxxxx',
     appId: '1:409314884131:ios:15cea3d63b2c7dc5bc0f96',
     messagingSenderId: '409314884131',
     projectId: 'hostify-10c0f',

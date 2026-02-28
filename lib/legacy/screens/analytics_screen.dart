@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
 import 'package:table_calendar/table_calendar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
@@ -8,7 +9,6 @@ import 'package:hostify/legacy/providers/admin_review_provider.dart';
 import 'package:hostify/legacy/providers/property_provider.dart';
 import 'package:hostify/legacy/widgets/landlord_filter_section.dart';
 import 'package:hostify/legacy/widgets/analytics_charts.dart';
-import 'package:intl/intl.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AnalyticsScreen extends StatefulWidget {

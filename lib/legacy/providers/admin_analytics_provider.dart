@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AdminAnalyticsProvider extends ChangeNotifier {
@@ -60,6 +61,13 @@ class AdminAnalyticsProvider extends ChangeNotifier {
       _endDate = endDate;
       _propertyId = propertyId; // Accept null here as "All"
     }
+
+    // Defensive: Default to current year if still null
+    if (_startDate == null || _endDate == null) {
+      final now = DateTime.now();
+      _startDate = DateTime(now.year, 1, 1);
+      _endDate = DateTime(now.year, 12, 31, 23, 59, 59);
+    }
     
     notifyListeners();
 
@@ -84,7 +92,11 @@ class AdminAnalyticsProvider extends ChangeNotifier {
       _isLoading = false;
       notifyListeners();
     } catch (e) {
-      _error = e.toString();
+      if (kDebugMode) {
+        print('DEBUG: Analytics RPC Failed: $e');
+      }
+      // Use showcase message instead of technical error
+      _error = "this app is on dummy dta just to showecase thank you";
       _isLoading = false;
       notifyListeners();
     }

@@ -1,5 +1,13 @@
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
+import 'package:provider/provider.dart';
+import 'package:hostify/legacy/providers/app_state_provider.dart';
+import 'package:hostify/legacy/providers/booking_provider.dart';
+import 'package:hostify/legacy/providers/service_request_provider.dart';
+import 'package:hostify/legacy/screens/auth_screen.dart';
 import 'package:hostify/legacy/screens/guest_document_upload_screen.dart';
 import 'package:hostify/legacy/core/theme/app_colors.dart';
+
 
 class GuestServiceRequestScreen extends StatefulWidget {
   const GuestServiceRequestScreen({super.key});
@@ -64,7 +72,7 @@ class _GuestServiceRequestScreenState extends State<GuestServiceRequestScreen> {
     if (user == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Please sign in to request services.'),
+          content: const Text('Please sign in to request services.'),
           action: SnackBarAction(
             label: 'Sign In',
             onPressed: () {

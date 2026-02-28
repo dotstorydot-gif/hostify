@@ -1,3 +1,5 @@
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:local_auth/local_auth.dart';
@@ -78,12 +80,12 @@ class AuthService {
 
     // Native implementation (iOS/Android/macOS)
     try {
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      final googleUser = await _googleSignIn.signIn();
       if (googleUser == null) {
         throw Exception('Google Sign-In canceled');
       }
 
-      final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+      final googleAuth = await googleUser.authentication;
       final accessToken = googleAuth.accessToken;
       final idToken = googleAuth.idToken;
 
@@ -96,6 +98,7 @@ class AuthService {
         idToken: idToken,
         accessToken: accessToken,
       );
+
       
       // Auto-create profile if needed
       await _ensureUserProfile(response.user, googleUser.displayName);

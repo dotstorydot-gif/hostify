@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 class GlobalDialogs {
   static Future<void> showError(BuildContext context, String message, [String? details]) async {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Row(
+        title: const Row(
           children: [
-            const Icon(Icons.error_outline, color: Colors.red),
-            const SizedBox(width: 12),
-            const Text('Error', style: TextStyle(color: Colors.red)),
+            Icon(Icons.error_outline, color: Colors.red),
+            SizedBox(width: 12),
+            Text('Error', style: TextStyle(color: Colors.red)),
           ],
         ),
         content: Column(

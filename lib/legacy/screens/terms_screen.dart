@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/screens/id_verification_screen.dart';
 
 class TermsScreen extends StatelessWidget {

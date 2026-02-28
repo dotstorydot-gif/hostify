@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
 import 'package:hostify/legacy/l10n/app_localizations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -7,10 +8,10 @@ import 'package:hostify/legacy/providers/booking_provider.dart';
 import 'package:hostify/legacy/providers/app_state_provider.dart';
 import 'package:hostify/legacy/providers/review_provider.dart';
 import 'package:hostify/legacy/providers/property_provider.dart';
-import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:hostify/legacy/screens/auth_screen.dart';
 import 'package:hostify/legacy/screens/guest_document_upload_screen.dart';
+import 'package:hostify/legacy/providers/document_provider.dart';
 
 class PropertyDetailScreen extends StatefulWidget {
   final Map<String, dynamic> property;
@@ -679,76 +680,88 @@ class _PropertyDetailScreenState extends State<PropertyDetailScreen> {
     );
   }
 
-  void _showBookingRequestDialog() {
+  Future<void> _showBookingRequestDialog() async {
     final l10n = AppLocalizations.of(context)!;
     if (widget.checkIn == null || widget.checkOut == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(l10n.selectDatesFirst)),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.selectDatesFirst)),
+        );
+      }
       return;
     }
 
     final user = context.read<AppStateProvider>().currentUser;
     if (user == null) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Sign In Required'),
-          content: const Text('Please sign in to book this property.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthScreen()),
-                );
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-              child: const Text('Sign In'),
-            ),
-          ],
-        ),
-      );
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Sign In Required'),
+            content: const Text('Please sign in to book this property.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const AuthScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: const Text('Sign In'),
+              ),
+            ],
+          ),
+        );
+      }
       return;
     }
 
+    // Smart check for document verification
+    final appState = context.read<AppStateProvider>();
+    final documentProvider = context.read<DocumentProvider>();
+    
+    // Fetch documents if not already loaded or to ensure freshness
+    await documentProvider.fetchUserDocuments(user.id);
+    
+    final isVerified = appState.userProfile?['is_verified'] == true;
+    final hasDocuments = documentProvider.userDocuments.isNotEmpty;
 
-    // Check for document verification
-    final userProfile = context.read<AppStateProvider>().userProfile;
-    final isVerified = userProfile?['is_verified'] == true;
-
-    if (!isVerified) {
-       showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Identity Verification Required'),
-          content: const Text('To ensure safety, please upload your identity documents before booking.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                if (context.mounted) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const GuestDocumentUploadScreen()),
-                  );
-                }
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
-              child: const Text('Upload Documents'),
-            ),
-          ],
-        ),
-      );
+    // Use smart logic: Allow if verified OR has previous records
+    if (!isVerified && !hasDocuments) {
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Identity Verification Required'),
+            content: const Text('To ensure safety, please upload your identity documents before your first booking.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  if (context.mounted) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const GuestDocumentUploadScreen()),
+                    );
+                  }
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+                child: const Text('Upload Documents'),
+              ),
+            ],
+          ),
+        );
+      }
       return;
     }
 

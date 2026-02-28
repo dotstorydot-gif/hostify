@@ -1,3 +1,4 @@
+import "package:flutter/material.dart";
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -20,7 +21,7 @@ class ReviewProvider extends ChangeNotifier {
     
     try {
       final response = await _supabase
-          .from('review-images')
+          .from('reviews')
           .select('''
             *,
             review_images (image_url)
@@ -56,7 +57,7 @@ class ReviewProvider extends ChangeNotifier {
 
     try {
       // 1. Insert Review to 'review-images' table
-      final reviewResponse = await _supabase.from('review-images').insert({
+      final reviewResponse = await _supabase.from('reviews').insert({
         'property_id': propertyId,
         'booking_id': bookingId,
         'guest_id': userId,
@@ -82,9 +83,9 @@ class ReviewProvider extends ChangeNotifier {
           final path = '$reviewId/$fileName';
 
           // Upload to Supabase Storage
-          await _supabase.storage.from('review-images').upload(path, photo);
+          await _supabase.storage.from('reviews').upload(path, photo);
           
-          final imageUrl = _supabase.storage.from('review-images').getPublicUrl(path);
+          final imageUrl = _supabase.storage.from('reviews').getPublicUrl(path);
 
           // Insert image record
           await _supabase.from('review_images').insert({

@@ -72,7 +72,7 @@ class AdminBookingProvider extends ChangeNotifier {
             'status': booking['status'],
             'total': (booking['total_price'] != null && booking['total_price'] > 0) 
                 ? (booking['total_price'] as num).toDouble() 
-                : (booking['nights'] as int) * (booking['property']?['price_per_night'] != null ? (booking['property']?['price_per_night'] as num).toDouble() : 150.0).toDouble(),
+                : 150.0, // Fallback if total_price is null
             'source': booking['booking_source'],
             'external_id': booking['external_booking_id'],
           });

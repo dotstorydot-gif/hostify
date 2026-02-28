@@ -1,12 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:hostify/legacy/screens/guest_dashboard.dart';
-import 'package:hostify/legacy/l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:hostify/legacy/services/auth_service.dart';
 import 'package:hostify/legacy/services/push_notification_service.dart';
-import 'package:hostify/legacy/core/config/supabase_config.dart';
 
 /// Global app state provider managing user authentication and profile
 class AppStateProvider extends ChangeNotifier {
@@ -62,13 +58,25 @@ class AppStateProvider extends ChangeNotifier {
     });
   }
   
+  Future<void>? _profileLoadFuture;
+
   /// Load user profile from database
   Future<void> _loadUserProfile() async {
     if (_currentUser == null) return;
     
-    // Reset role before loading to prevent stale state
-    _userRole = null;
+    if (_profileLoadFuture != null) {
+      return _profileLoadFuture;
+    }
 
+    _profileLoadFuture = _performProfileLoad();
+    try {
+      await _profileLoadFuture;
+    } finally {
+      _profileLoadFuture = null;
+    }
+  }
+
+  Future<void> _performProfileLoad() async {
     try {
       // Fetch profile using correct primary key 'id'
       final response = await _supabase
@@ -81,10 +89,17 @@ class AppStateProvider extends ChangeNotifier {
 
       // Fetch user role using AuthService
       final roles = await _authService.getUserRoles();
+      if (kDebugMode) print('DEBUG: AuthService roles fetched: $roles');
+      
       if (roles.isNotEmpty) {
         _userRole = roles.first;
+      } else {
+        // If roles table is empty, check profile fallback
+        _userRole = _userProfile?['role'];
+        if (kDebugMode) print('DEBUG: Roles empty, checking profile fallback: $_userRole');
       }
 
+      if (kDebugMode) print('DEBUG: Final determined _userRole in AppStateProvider: $_userRole');
       notifyListeners();
     } catch (e) {
       if (kDebugMode) {
@@ -123,7 +138,10 @@ class AppStateProvider extends ChangeNotifier {
     _clearError();
     try {
       await _authService.signIn(email: email, password: password);
-      // _initializeAuth will handle the update via listener
+      // Proactively update user before loading profile to avoid listener lag
+      _currentUser = _supabase.auth.currentUser;
+      if (kDebugMode) print('DEBUG: Proactively updated _currentUser in signIn: ${_currentUser?.id}');
+      await _loadUserProfile();
     } catch (e) {
       _setError(e.toString());
       rethrow;
@@ -138,13 +156,14 @@ class AppStateProvider extends ChangeNotifier {
     _clearError();
     try {
       await _authService.signUp(email: email, password: password, fullName: fullName);
+      // Proactively update user before loading profile
+      _currentUser = _supabase.auth.currentUser;
       
       // Assign role (if auto-confirm is enabled or session exists)
-      if (_supabase.auth.currentSession != null) {
+      if (_currentUser != null) {
         await _authService.addUserRole(role);
+        await _loadUserProfile();
       }
-      
-      // _initializeAuth will handle the update via listener
     } catch (e) {
       _setError(e.toString());
       rethrow;
@@ -217,7 +236,7 @@ class AppStateProvider extends ChangeNotifier {
        await _supabase.storage.from('user-avatars').uploadBinary(
          fileName,
          bytes,
-         fileOptions: FileOptions(
+         fileOptions: const FileOptions(
            contentType: 'image/\$fileExt',
            cacheControl: '3600',
            upsert: true,

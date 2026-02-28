@@ -42,7 +42,7 @@ class PropertyProvider extends ChangeNotifier {
       }
       
       // Fetch properties without images first to avoid duplicates
-      final propertiesResponse = await _supabase.from('property-images')
+      final propertiesResponse = await _supabase.from('properties')
         .select('*')
         .inFilter('id', propertyIds)
         .order('created_at', ascending: false);
@@ -111,7 +111,7 @@ class PropertyProvider extends ChangeNotifier {
     _setLoading(true);
     try {
       // 1. Insert Property
-      final response = await _supabase.from('property-images').insert({
+      final response = await _supabase.from('properties').insert({
         'name': name,
         'description': description,
         'price_per_night': price,
@@ -169,7 +169,7 @@ class PropertyProvider extends ChangeNotifier {
       if (icalUrl != null) finalUpdates['ical_url'] = icalUrl;
 
       if (finalUpdates.isNotEmpty) {
-        await _supabase.from('property-images').update(finalUpdates).eq('id', id);
+        await _supabase.from('properties').update(finalUpdates).eq('id', id);
       }
 
       // 2. Update Amenities (Delete all and re-insert for simplicity)
@@ -269,7 +269,7 @@ class PropertyProvider extends ChangeNotifier {
   Future<void> deleteProperty(String id, String landlordId) async {
     _setLoading(true);
      try {
-      await _supabase.from('property-images').delete().eq('id', id);
+      await _supabase.from('properties').delete().eq('id', id);
       await fetchLandlordProperties(landlordId);
     } catch (e) {
       _setError('Failed to delete property: $e');
@@ -283,8 +283,8 @@ class PropertyProvider extends ChangeNotifier {
     final fileName = '${DateTime.now().millisecondsSinceEpoch}_${image.path.split('/').last}';
     final path = '$propertyId/$fileName';
     
-    await _supabase.storage.from('property-images').upload(path, image);
-    final publicUrl = _supabase.storage.from('property-images').getPublicUrl(path);
+    await _supabase.storage.from('properties').upload(path, image);
+    final publicUrl = _supabase.storage.from('properties').getPublicUrl(path);
 
     await _supabase.from('property_images').insert({
       'property_id': propertyId,
@@ -298,7 +298,7 @@ class PropertyProvider extends ChangeNotifier {
     _setLoading(true);
     try {
       // 1. Update URL in DB
-      await _supabase.from('property-images').update({'ical_url': icalUrl}).eq('id', propertyId);
+      await _supabase.from('properties').update({'ical_url': icalUrl}).eq('id', propertyId);
 
       // 2. Fetch iCal data
       final response = await http.get(Uri.parse(icalUrl));
@@ -336,7 +336,6 @@ class PropertyProvider extends ChangeNotifier {
                      'property_id': propertyId,
                      'check_in': checkIn.toIso8601String(),
                      'check_out': checkOut.toIso8601String(),
-                     'nights': nights,
                      'status': 'confirmed',
                      'booking_source': 'airbnb',
                      'external_booking_id': uid,

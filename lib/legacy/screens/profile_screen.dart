@@ -1,15 +1,13 @@
+import "package:flutter/material.dart";
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:hostify/legacy/providers/app_state_provider.dart';
 import 'package:hostify/legacy/providers/document_provider.dart';
 import 'package:hostify/legacy/screens/auth_screen.dart';
-import 'package:hostify/legacy/screens/guest_edit_profile_screen.dart';
 import 'package:hostify/legacy/screens/guest_my_bookings_screen.dart';
 import 'package:hostify/legacy/screens/guest_my_requests_screen.dart';
-import 'package:hostify/legacy/screens/guest_documents_screen.dart';
 import 'package:hostify/legacy/screens/settings_screen.dart';
 import 'package:hostify/legacy/services/language_service.dart';
 import 'package:hostify/legacy/l10n/app_localizations.dart';
@@ -184,46 +182,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  Future<void> _seedData() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Seed Dummy Data?'),
-        content: const Text('This will populate your account with sample properties, bookings, and analytics for demonstration. This cannot be easily undone.'),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(context, false), child: const Text('Cancel')),
-          TextButton(
-            onPressed: () => Navigator.pop(context, true),
-            child: const Text('Seed Data'),
-          ),
-        ],
-      ),
-    );
 
-    if (confirmed == true) {
-      setState(() => _isInit = true); // Trigger UI loading state if desired, or just show snackbar
-      try {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Seeding data... please wait')));
-        await SeedService().seedDummyData();
-        
-        if (mounted) {
-           final user = context.read<AppStateProvider>().currentUser;
-           if (user != null) {
-              await context.read<PropertyProvider>().fetchLandlordProperties(user.id);
-              await context.read<AdminAnalyticsProvider>().fetchAnalytics(
-                startDate: DateTime(2026, 1, 1),
-                endDate: DateTime(2026, 12, 31),
-              );
-           }
-           ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Dummy data seeded successfully!')));
-        }
-      } catch (e) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Seeding failed: $e')));
-        }
-      }
-    }
-  }
   
   void _showLanguageDialog() {
     final l10n = AppLocalizations.of(context)!;
@@ -642,93 +601,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Debug Zone
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(color: Colors.grey.withValues(alpha: 0.3)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      const Text(
-                        'Debug Zone',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Use this button to quickly populate the database with dummy properties for testing.',
-                        style: TextStyle(color: Colors.black54, fontSize: 13),
-                      ),
-                      const SizedBox(height: 20),
-                      ElevatedButton.icon(
-                        onPressed: () async {
-                           try {
-                             ScaffoldMessenger.of(context).showSnackBar(
-                               const SnackBar(content: Text('Seeding Database...')),
-                             );
-                             await SeedService().seedDummyData();
-                             // Refresh properties
-                             await context.read<PropertyProvider>().fetchProperties();
-                             if (mounted) {
-                               ScaffoldMessenger.of(context).showSnackBar(
-                                 const SnackBar(content: Text('Seed successful! Check Explore tab.')),
-                               );
-                             }
-                           } catch (e) {
-                              if (mounted) {
-                               ScaffoldMessenger.of(context).showSnackBar(
-                                 SnackBar(content: Text('Error: $e'), backgroundColor: Colors.red,),
-                               );
-                             }
-                           }
-                        },
-                        icon: const Icon(Icons.bug_report),
-                        label: const Text('Seed Dummy Data'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          elevation: 0,
-                        ),
-
-                      ),
-                      const SizedBox(height: 16),
-                      OutlinedButton.icon(
-                        onPressed: _seedData,
-                        icon: const Icon(Icons.auto_awesome),
-                        label: const Text('Seed Dummy Data'),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blue[700],
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          side: BorderSide(color: Colors.blue[200]!),
-                        ),
-                      ),
-                      const SizedBox(height: 16),
-                      OutlinedButton.icon(
-                        onPressed: () async {
-                           await context.read<AppStateProvider>().signOut();
-                           if (mounted) {
-                             Navigator.of(context).pushAndRemoveUntil(
-                               MaterialPageRoute(builder: (_) => const AuthScreen()),
-                               (route) => false,
-                             );
-                           }
-                        },
-                        icon: const Icon(Icons.logout),
-                        label: Text(l10n.logout),
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.grey[700],
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                          side: BorderSide(color: Colors.grey[300]!),
-                        ),
-                      ),
-                    ],
+                // Logout Button
+                OutlinedButton.icon(
+                  onPressed: () async {
+                     await context.read<AppStateProvider>().signOut();
+                     if (mounted) {
+                       Navigator.of(context).pushAndRemoveUntil(
+                         MaterialPageRoute(builder: (_) => const AuthScreen()),
+                         (route) => false,
+                       );
+                     }
+                  },
+                  icon: const Icon(Icons.logout),
+                  label: Text(l10n.logout),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.red[700],
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    side: BorderSide(color: Colors.red[200]!),
+                    minimumSize: const Size(double.infinity, 56),
                   ),
                 ),
                 const SizedBox(height: 48),
@@ -744,10 +635,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return TextField(
       controller: controller,
       enabled: _isEditing,
+      style: const TextStyle(color: Color(0xFF2D3748)),
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(icon),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        labelStyle: const TextStyle(color: Color(0xFF6B7280)),
+        filled: true,
+        fillColor: Colors.white,
+        prefixIcon: Icon(icon, color: const Color(0xFF6B7280)),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[300]!)),
         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[300]!)),
         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFFFFD700), width: 2)),
         disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[200]!)),

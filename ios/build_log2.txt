@@ -1,0 +1,734 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -workspace /Volumes/sameh/hostify/ios/Runner.xcworkspace -scheme Runner -configuration Debug build
+
+--- xcodebuild: WARNING: Using the first of multiple matching destinations:
+{ platform:macOS, arch:arm64, variant:Designed for [iPad,iPhone], id:00008103-000450EE26A2001E, name:My Mac }
+{ platform:iOS, id:dvtdevice-DVTiPhonePlaceholder-iphoneos:placeholder, name:Any iOS Device }
+{ platform:iOS Simulator, id:dvtdevice-DVTiOSDeviceSimulatorPlaceholder-iphonesimulator:placeholder, name:Any iOS Simulator Device }
+{ platform:iOS Simulator, arch:arm64, id:5ACB4770-E24E-4AC7-BD35-9CEF58E0ABB9, OS:26.2, name:iPad (A16) }
+{ platform:iOS Simulator, arch:arm64, id:F64823F3-A992-4EA7-9D9E-7DF6A00AD645, OS:26.2, name:iPad Air 11-inch (M3) }
+{ platform:iOS Simulator, arch:arm64, id:C0424F65-EAE0-40E4-9CEE-4274FE0F5968, OS:26.2, name:iPad Air 13-inch (M3) }
+{ platform:iOS Simulator, arch:arm64, id:F9B3B65E-3C53-4B30-8FA1-A9FCD588BD7A, OS:26.2, name:iPad Pro 11-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:F42BD9B6-B144-44B6-B415-94537B1BB9E3, OS:26.2, name:iPad Pro 13-inch (M5) }
+{ platform:iOS Simulator, arch:arm64, id:A7D4B075-044F-49D8-BEA0-97F607A1FEBA, OS:26.2, name:iPad mini (A17 Pro) }
+{ platform:iOS Simulator, arch:arm64, id:B5EF3144-2728-4478-A0D4-208BE767354C, OS:26.2, name:iPhone 16e }
+{ platform:iOS Simulator, arch:arm64, id:DA967B62-CCC1-471D-8348-2E496DE98939, OS:26.2, name:iPhone 17 }
+{ platform:iOS Simulator, arch:arm64, id:9F7B60F4-F7A2-4FD0-A7B4-76D5BB67E813, OS:26.2, name:iPhone 17 Pro }
+{ platform:iOS Simulator, arch:arm64, id:F490EFCF-8468-49C0-8C4C-34859903FCAF, OS:26.2, name:iPhone 17 Pro Max }
+{ platform:iOS Simulator, arch:arm64, id:F2FA7007-6C65-49BB-8D49-3C29BE943C40, OS:26.2, name:iPhone Air }
+{ platform:iOS, arch:arm64, id:00008110-001028D90E3A201E, name:Sameh’s iPhone }
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (92 targets)
+    Target 'Runner' in project 'Runner'
+        ➜ Implicit dependency on target 'Pods-Runner' in project 'Pods' via file 'Pods_Runner.framework' in build phase 'Link Binary'
+        ➜ Implicit dependency on target 'AppAuth' in project 'Pods' via options '-framework AppAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'AppCheckCore' in project 'Pods' via options '-framework AppCheckCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'DKImagePickerController' in project 'Pods' via options '-framework DKImagePickerController' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'DKPhotoGallery' in project 'Pods' via options '-framework DKPhotoGallery' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'PromisesObjC' in project 'Pods' via options '-framework FBLPromises' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods' via options '-framework FirebaseAppCheckInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseAuth' in project 'Pods' via options '-framework FirebaseAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseAuthInterop' in project 'Pods' via options '-framework FirebaseAuthInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCoreExtension' in project 'Pods' via options '-framework FirebaseCoreExtension' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCoreInternal' in project 'Pods' via options '-framework FirebaseCoreInternal' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseFirestore' in project 'Pods' via options '-framework FirebaseFirestore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods' via options '-framework FirebaseFirestoreInternal' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseInstallations' in project 'Pods' via options '-framework FirebaseInstallations' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseMessaging' in project 'Pods' via options '-framework FirebaseMessaging' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseSharedSwift' in project 'Pods' via options '-framework FirebaseSharedSwift' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMAppAuth' in project 'Pods' via options '-framework GTMAppAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMSessionFetcher' in project 'Pods' via options '-framework GTMSessionFetcher' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleDataTransport' in project 'Pods' via options '-framework GoogleDataTransport' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleSignIn' in project 'Pods' via options '-framework GoogleSignIn' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'RecaptchaInterop' in project 'Pods' via options '-framework RecaptchaInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'SDWebImage' in project 'Pods' via options '-framework SDWebImage' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'SwiftyGif' in project 'Pods' via options '-framework SwiftyGif' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'abseil' in project 'Pods' via options '-framework absl' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'app_links' in project 'Pods' via options '-framework app_links' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'cloud_firestore' in project 'Pods' via options '-framework cloud_firestore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'file_picker' in project 'Pods' via options '-framework file_picker' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'firebase_auth' in project 'Pods' via options '-framework firebase_auth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'firebase_core' in project 'Pods' via options '-framework firebase_core' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'firebase_messaging' in project 'Pods' via options '-framework firebase_messaging' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'flutter_local_notifications' in project 'Pods' via options '-framework flutter_local_notifications' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'flutter_native_splash' in project 'Pods' via options '-framework flutter_native_splash' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'flutter_secure_storage' in project 'Pods' via options '-framework flutter_secure_storage' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'google_sign_in_ios' in project 'Pods' via options '-framework google_sign_in_ios' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-Core' in project 'Pods' via options '-framework grpc' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-C++' in project 'Pods' via options '-framework grpcpp' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'image_picker_ios' in project 'Pods' via options '-framework image_picker_ios' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'leveldb-library' in project 'Pods' via options '-framework leveldb' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'local_auth_darwin' in project 'Pods' via options '-framework local_auth_darwin' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'nanopb' in project 'Pods' via options '-framework nanopb' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'BoringSSL-GRPC' in project 'Pods' via options '-framework openssl_grpc' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'printing' in project 'Pods' via options '-framework printing' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'share_plus' in project 'Pods' via options '-framework share_plus' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'shared_preferences_foundation' in project 'Pods' via options '-framework shared_preferences_foundation' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'sign_in_with_apple' in project 'Pods' via options '-framework sign_in_with_apple' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'sqflite_darwin' in project 'Pods' via options '-framework sqflite_darwin' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'url_launcher_ios' in project 'Pods' via options '-framework url_launcher_ios' in build setting 'OTHER_LDFLAGS'
+    Target 'Pods-Runner' in project 'Pods'
+        ➜ Explicit dependency on target 'AppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'Pods'
+        ➜ Explicit dependency on target 'BoringSSL-GRPC' in project 'Pods'
+        ➜ Explicit dependency on target 'DKImagePickerController' in project 'Pods'
+        ➜ Explicit dependency on target 'DKPhotoGallery' in project 'Pods'
+        ➜ Explicit dependency on target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseInstallations' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseMessaging' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleDataTransport' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+        ➜ Explicit dependency on target 'RecaptchaInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'SDWebImage' in project 'Pods'
+        ➜ Explicit dependency on target 'SwiftyGif' in project 'Pods'
+        ➜ Explicit dependency on target 'abseil' in project 'Pods'
+        ➜ Explicit dependency on target 'app_links' in project 'Pods'
+        ➜ Explicit dependency on target 'cloud_firestore' in project 'Pods'
+        ➜ Explicit dependency on target 'file_picker' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_auth' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_core' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_messaging' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_local_notifications' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_native_splash' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_secure_storage' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-C++' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-Core' in project 'Pods'
+        ➜ Explicit dependency on target 'google_sign_in_ios' in project 'Pods'
+        ➜ Explicit dependency on target 'image_picker_ios' in project 'Pods'
+        ➜ Explicit dependency on target 'leveldb-library' in project 'Pods'
+        ➜ Explicit dependency on target 'local_auth_darwin' in project 'Pods'
+        ➜ Explicit dependency on target 'nanopb' in project 'Pods'
+        ➜ Explicit dependency on target 'printing' in project 'Pods'
+        ➜ Explicit dependency on target 'share_plus' in project 'Pods'
+        ➜ Explicit dependency on target 'shared_preferences_foundation' in project 'Pods'
+        ➜ Explicit dependency on target 'sign_in_with_apple' in project 'Pods'
+        ➜ Explicit dependency on target 'sqflite_darwin' in project 'Pods'
+        ➜ Explicit dependency on target 'url_launcher_ios' in project 'Pods'
+    Target 'url_launcher_ios' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'url_launcher_ios-url_launcher_ios_privacy' in project 'Pods'
+    Target 'url_launcher_ios-url_launcher_ios_privacy' in project 'Pods' (no dependencies)
+    Target 'sqflite_darwin' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'sqflite_darwin-sqflite_darwin_privacy' in project 'Pods'
+    Target 'sqflite_darwin-sqflite_darwin_privacy' in project 'Pods' (no dependencies)
+    Target 'sign_in_with_apple' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+    Target 'shared_preferences_foundation' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'shared_preferences_foundation-shared_preferences_foundation_privacy' in project 'Pods'
+    Target 'shared_preferences_foundation-shared_preferences_foundation_privacy' in project 'Pods' (no dependencies)
+    Target 'share_plus' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'share_plus-share_plus_privacy' in project 'Pods'
+    Target 'share_plus-share_plus_privacy' in project 'Pods' (no dependencies)
+    Target 'printing' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+    Target 'local_auth_darwin' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'local_auth_darwin-local_auth_darwin_privacy' in project 'Pods'
+    Target 'local_auth_darwin-local_auth_darwin_privacy' in project 'Pods' (no dependencies)
+    Target 'image_picker_ios' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'image_picker_ios-image_picker_ios_privacy' in project 'Pods'
+    Target 'image_picker_ios-image_picker_ios_privacy' in project 'Pods' (no dependencies)
+    Target 'google_sign_in_ios' in project 'Pods'
+        ➜ Explicit dependency on target 'AppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'Pods'
+        ➜ Explicit dependency on target 'google_sign_in_ios-google_sign_in_ios_privacy' in project 'Pods'
+    Target 'google_sign_in_ios-google_sign_in_ios_privacy' in project 'Pods' (no dependencies)
+    Target 'flutter_secure_storage' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_secure_storage-flutter_secure_storage' in project 'Pods'
+    Target 'flutter_secure_storage-flutter_secure_storage' in project 'Pods' (no dependencies)
+    Target 'flutter_native_splash' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_native_splash-flutter_native_splash_privacy' in project 'Pods'
+    Target 'flutter_native_splash-flutter_native_splash_privacy' in project 'Pods' (no dependencies)
+    Target 'flutter_local_notifications' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'flutter_local_notifications-flutter_local_notifications_privacy' in project 'Pods'
+    Target 'flutter_local_notifications-flutter_local_notifications_privacy' in project 'Pods' (no dependencies)
+    Target 'firebase_messaging' in project 'Pods'
+        ➜ Explicit dependency on target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_core' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_messaging-firebase_messaging_Privacy' in project 'Pods'
+    Target 'firebase_messaging-firebase_messaging_Privacy' in project 'Pods' (no dependencies)
+    Target 'firebase_auth' in project 'Pods'
+        ➜ Explicit dependency on target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_core' in project 'Pods'
+    Target 'file_picker' in project 'Pods'
+        ➜ Explicit dependency on target 'DKImagePickerController' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'file_picker-file_picker_ios_privacy' in project 'Pods'
+    Target 'file_picker-file_picker_ios_privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'DKImagePickerController' in project 'Pods' via options '-framework DKImagePickerController' in build setting 'OTHER_LDFLAGS'
+    Target 'cloud_firestore' in project 'Pods'
+        ➜ Explicit dependency on target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'firebase_core' in project 'Pods'
+    Target 'firebase_core' in project 'Pods'
+        ➜ Explicit dependency on target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+    Target 'app_links' in project 'Pods'
+        ➜ Explicit dependency on target 'Flutter' in project 'Pods'
+        ➜ Explicit dependency on target 'app_links-app_links_ios_privacy' in project 'Pods'
+    Target 'app_links-app_links_ios_privacy' in project 'Pods' (no dependencies)
+    Target 'GoogleSignIn' in project 'Pods'
+        ➜ Explicit dependency on target 'AppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleSignIn-GoogleSignIn' in project 'Pods'
+    Target 'GoogleSignIn-GoogleSignIn' in project 'Pods'
+        ➜ Implicit dependency on target 'AppAuth' in project 'Pods' via options '-framework AppAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'AppCheckCore' in project 'Pods' via options '-framework AppCheckCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMAppAuth' in project 'Pods' via options '-framework GTMAppAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMSessionFetcher' in project 'Pods' via options '-framework GTMSessionFetcher' in build setting 'OTHER_LDFLAGS'
+    Target 'GTMAppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'AppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMAppAuth-GTMAppAuth_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+    Target 'GTMAppAuth-GTMAppAuth_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'AppAuth' in project 'Pods' via options '-framework AppAuth' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMSessionFetcher' in project 'Pods' via options '-framework GTMSessionFetcher' in build setting 'OTHER_LDFLAGS'
+    Target 'Flutter' in project 'Pods' (no dependencies)
+    Target 'Firebase' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseMessaging' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods' via options '-weak_framework FirebaseFirestoreInternal' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseMessaging' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseInstallations' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseMessaging-FirebaseMessaging_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleDataTransport' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'nanopb' in project 'Pods'
+    Target 'FirebaseMessaging-FirebaseMessaging_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseInstallations' in project 'Pods' via options '-framework FirebaseInstallations' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleDataTransport' in project 'Pods' via options '-framework GoogleDataTransport' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'nanopb' in project 'Pods' via options '-framework nanopb' in build setting 'OTHER_LDFLAGS'
+    Target 'GoogleDataTransport' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleDataTransport-GoogleDataTransport_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+        ➜ Explicit dependency on target 'nanopb' in project 'Pods'
+    Target 'GoogleDataTransport-GoogleDataTransport_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'PromisesObjC' in project 'Pods' via options '-framework FBLPromises' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'nanopb' in project 'Pods' via options '-framework nanopb' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseInstallations' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseInstallations-FirebaseInstallations_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+    Target 'FirebaseInstallations-FirebaseInstallations_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'PromisesObjC' in project 'Pods' via options '-framework FBLPromises' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseFirestore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestore-FirebaseFirestore_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseSharedSwift' in project 'Pods'
+    Target 'FirebaseFirestore-FirebaseFirestore_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCoreExtension' in project 'Pods' via options '-framework FirebaseCoreExtension' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseFirestoreInternal' in project 'Pods' via options '-framework FirebaseFirestoreInternal' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseSharedSwift' in project 'Pods' via options '-framework FirebaseSharedSwift' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseSharedSwift' in project 'Pods' (no dependencies)
+    Target 'FirebaseFirestoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseFirestoreInternal-FirebaseFirestoreInternal_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'abseil' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-C++' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-Core' in project 'Pods'
+        ➜ Explicit dependency on target 'leveldb-library' in project 'Pods'
+        ➜ Explicit dependency on target 'nanopb' in project 'Pods'
+    Target 'FirebaseFirestoreInternal-FirebaseFirestoreInternal_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods' via options '-framework FirebaseAppCheckInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'abseil' in project 'Pods' via options '-framework absl' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-Core' in project 'Pods' via options '-framework grpc' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-C++' in project 'Pods' via options '-framework grpcpp' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'leveldb-library' in project 'Pods' via options '-framework leveldb' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'nanopb' in project 'Pods' via options '-framework nanopb' in build setting 'OTHER_LDFLAGS'
+    Target 'nanopb' in project 'Pods'
+        ➜ Explicit dependency on target 'nanopb-nanopb_Privacy' in project 'Pods'
+    Target 'nanopb-nanopb_Privacy' in project 'Pods' (no dependencies)
+    Target 'leveldb-library' in project 'Pods'
+        ➜ Explicit dependency on target 'leveldb-library-leveldb_Privacy' in project 'Pods'
+    Target 'leveldb-library-leveldb_Privacy' in project 'Pods' (no dependencies)
+    Target 'gRPC-C++' in project 'Pods'
+        ➜ Explicit dependency on target 'abseil' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-C++-gRPCCertificates-Cpp' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-C++-grpcpp' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-Core' in project 'Pods'
+    Target 'gRPC-C++-grpcpp' in project 'Pods'
+        ➜ Implicit dependency on target 'abseil' in project 'Pods' via options '-framework absl' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-Core' in project 'Pods' via options '-framework grpc' in build setting 'OTHER_LDFLAGS'
+    Target 'gRPC-C++-gRPCCertificates-Cpp' in project 'Pods'
+        ➜ Implicit dependency on target 'abseil' in project 'Pods' via options '-framework absl' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'gRPC-Core' in project 'Pods' via options '-framework grpc' in build setting 'OTHER_LDFLAGS'
+    Target 'gRPC-Core' in project 'Pods'
+        ➜ Explicit dependency on target 'BoringSSL-GRPC' in project 'Pods'
+        ➜ Explicit dependency on target 'abseil' in project 'Pods'
+        ➜ Explicit dependency on target 'gRPC-Core-grpc' in project 'Pods'
+    Target 'gRPC-Core-grpc' in project 'Pods'
+        ➜ Implicit dependency on target 'abseil' in project 'Pods' via options '-framework absl' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'BoringSSL-GRPC' in project 'Pods' via options '-framework openssl_grpc' in build setting 'OTHER_LDFLAGS'
+    Target 'abseil' in project 'Pods'
+        ➜ Explicit dependency on target 'abseil-xcprivacy' in project 'Pods'
+    Target 'abseil-xcprivacy' in project 'Pods' (no dependencies)
+    Target 'FirebaseAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAuth-FirebaseAuth_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseAuthInterop' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreExtension' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'RecaptchaInterop' in project 'Pods'
+    Target 'FirebaseAuth-FirebaseAuth_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseAppCheckInterop' in project 'Pods' via options '-framework FirebaseAppCheckInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseAuthInterop' in project 'Pods' via options '-framework FirebaseAuthInterop' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'FirebaseCoreExtension' in project 'Pods' via options '-framework FirebaseCoreExtension' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GTMSessionFetcher' in project 'Pods' via options '-framework GTMSessionFetcher' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'RecaptchaInterop' in project 'Pods' via options '-framework RecaptchaInterop' in build setting 'OTHER_LDFLAGS'
+    Target 'RecaptchaInterop' in project 'Pods' (no dependencies)
+    Target 'GTMSessionFetcher' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher-GTMSessionFetcher_Core_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'GTMSessionFetcher-GTMSessionFetcher_Full_Privacy' in project 'Pods'
+    Target 'GTMSessionFetcher-GTMSessionFetcher_Full_Privacy' in project 'Pods' (no dependencies)
+    Target 'GTMSessionFetcher-GTMSessionFetcher_Core_Privacy' in project 'Pods' (no dependencies)
+    Target 'FirebaseCoreExtension' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreExtension-FirebaseCoreExtension_Privacy' in project 'Pods'
+    Target 'FirebaseCoreExtension-FirebaseCoreExtension_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseCore' in project 'Pods' via options '-framework FirebaseCore' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseCore' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCore-FirebaseCore_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+    Target 'FirebaseCore-FirebaseCore_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'FirebaseCoreInternal' in project 'Pods' via options '-framework FirebaseCoreInternal' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseCoreInternal' in project 'Pods'
+        ➜ Explicit dependency on target 'FirebaseCoreInternal-FirebaseCoreInternal_Privacy' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+    Target 'FirebaseCoreInternal-FirebaseCoreInternal_Privacy' in project 'Pods'
+        ➜ Implicit dependency on target 'GoogleUtilities' in project 'Pods' via options '-framework GoogleUtilities' in build setting 'OTHER_LDFLAGS'
+    Target 'FirebaseAuthInterop' in project 'Pods' (no dependencies)
+    Target 'FirebaseAppCheckInterop' in project 'Pods' (no dependencies)
+    Target 'DKImagePickerController' in project 'Pods'
+        ➜ Explicit dependency on target 'DKImagePickerController-DKImagePickerController' in project 'Pods'
+        ➜ Explicit dependency on target 'DKPhotoGallery' in project 'Pods'
+    Target 'DKImagePickerController-DKImagePickerController' in project 'Pods'
+        ➜ Implicit dependency on target 'DKPhotoGallery' in project 'Pods' via options '-framework DKPhotoGallery' in build setting 'OTHER_LDFLAGS'
+    Target 'DKPhotoGallery' in project 'Pods'
+        ➜ Explicit dependency on target 'DKPhotoGallery-DKPhotoGallery' in project 'Pods'
+        ➜ Explicit dependency on target 'SDWebImage' in project 'Pods'
+        ➜ Explicit dependency on target 'SwiftyGif' in project 'Pods'
+    Target 'DKPhotoGallery-DKPhotoGallery' in project 'Pods'
+        ➜ Implicit dependency on target 'SDWebImage' in project 'Pods' via options '-framework SDWebImage' in build setting 'OTHER_LDFLAGS'
+        ➜ Implicit dependency on target 'SwiftyGif' in project 'Pods' via options '-framework SwiftyGif' in build setting 'OTHER_LDFLAGS'
+    Target 'SwiftyGif' in project 'Pods'
+        ➜ Explicit dependency on target 'SwiftyGif-SwiftyGif' in project 'Pods'
+    Target 'SwiftyGif-SwiftyGif' in project 'Pods' (no dependencies)
+    Target 'SDWebImage' in project 'Pods'
+        ➜ Explicit dependency on target 'SDWebImage-SDWebImage' in project 'Pods'
+    Target 'SDWebImage-SDWebImage' in project 'Pods' (no dependencies)
+    Target 'BoringSSL-GRPC' in project 'Pods'
+        ➜ Explicit dependency on target 'BoringSSL-GRPC-openssl_grpc' in project 'Pods'
+    Target 'BoringSSL-GRPC-openssl_grpc' in project 'Pods' (no dependencies)
+    Target 'AppCheckCore' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'PromisesObjC' in project 'Pods'
+    Target 'PromisesObjC' in project 'Pods'
+        ➜ Explicit dependency on target 'PromisesObjC-FBLPromises_Privacy' in project 'Pods'
+    Target 'PromisesObjC-FBLPromises_Privacy' in project 'Pods' (no dependencies)
+    Target 'GoogleUtilities' in project 'Pods'
+        ➜ Explicit dependency on target 'GoogleUtilities-GoogleUtilities_Privacy' in project 'Pods'
+    Target 'GoogleUtilities-GoogleUtilities_Privacy' in project 'Pods' (no dependencies)
+    Target 'AppAuth' in project 'Pods'
+        ➜ Explicit dependency on target 'AppAuth-AppAuthCore_Privacy' in project 'Pods'
+    Target 'AppAuth-AppAuthCore_Privacy' in project 'Pods' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x objective-c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -x objective-c++ -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -V
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/ibtool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --print-asset-tag-combinations --output-format xml1 /Volumes/sameh/hostify/ios/Runner/Assets.xcassets
+
+Build description signature: 8ee9e65a6a3224b73100b8c199171144
+Build description path: /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/XCBuildData/8ee9e65a6a3224b73100b8c199171144.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk /Users/sameh/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.2-23C53-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+    cd /Volumes/sameh/hostify/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.2.sdk -o /Users/sameh/Library/Developer/Xcode/DerivedData/SDKStatCaches.noindex/iphoneos26.2-23C53-3794476bd08197c3e2abd9bb477ef7f7.sdkstatcache
+
+CreateBuildDirectory /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Products/Debug-iphoneos
+    cd /Volumes/sameh/hostify/ios
+    builtin-create-build-directory /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Products/Debug-iphoneos
+
+CreateBuildDirectory /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos
+    cd /Volumes/sameh/hostify/ios
+    builtin-create-build-directory /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphoneos
+
+WriteAuxiliaryFile /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Pods-8699adb1dd336b26511df848a716bd42-VFS-iphoneos/all-product-headers.yaml
+    cd /Volumes/sameh/hostify/ios
+    write-file /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/Pods-8699adb1dd336b26511df848a716bd42-VFS-iphoneos/all-product-headers.yaml
+
+WriteAuxiliaryFile /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/Runner.build/Debug-iphoneos/Runner-18c1723432283e0cc55f10a6dcfd9e02-VFS-iphoneos/all-product-headers.yaml
+    cd /Volumes/sameh/hostify/ios
+    write-file /Users/sameh/Library/Developer/Xcode/DerivedData/Runner-bqqpngxzogjwucdkbdjqxtckbacx/Build/Intermediates.noindex/Runner.build/Debug-iphoneos/Runner-18c1723432283e0cc55f10a6dcfd9e02-VFS-iphoneos/all-product-headers.yaml
+
+In flight operation:   <DVTOperationGroup: 0x12a642060; state = AREfc>
+     <IDEBuildOperationGroup: 0x12a616670; state = AREfc>
+         <DVTOperationGroup: 0x12a641b00; state = AREfc>
+             <IDEXCBuildSupportCore.IDEXCBuildServiceBuildOperation:0x11ac174d0:AREfc>
+         <__DVTSwiftAsyncOperation: 0x11fb66020; state = AReFc>
+         <DVTOperation: 0x11aea5940; state = aReFc>
+         <DVTOperation: 0x11ac18290; state = aReFc>
+         <__DVTSwiftAsyncOperation: 0x11fcb5270; state = AReFc>
+         <__DVTSwiftAsyncOperation: 0x12d9bd3b0; state = AReFc>
+         <DVTOperation: 0x12a61ff40; state = arefc>
+         <__DVTSwiftAsyncOperation: 0x11fb66170; state = AReFc>
+         <DVTOperation: 0x12a609230; state = arefc>
+<DVTOperationGroup: 0x12a642060; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDEScheme _groupAndImposeDependenciesForOrderedOperations:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+  9   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 12   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 13   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 14   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 15   main (in xcodebuild)
+ 16   start (in dyld)
+
+<IDEBuildOperationGroup: 0x12a616670; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   -[IDEBuildOperationGroup initWithBuildOperations:otherOperations:buildLog:] (in IDEFoundation)
+  3   -[IDEBuildOperationGroup initWithBuildOperations:buildLog:] (in IDEFoundation)
+  4   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 13   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 14   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 15   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 16   main (in xcodebuild)
+ 17   start (in dyld)
+
+<DVTOperationGroup: 0x12a641b00; state = AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[DVTOperationGroup init] (in DVTFoundation)
+  2   +[DVTOperationGroup operationGroupWithSuboperations:] (in DVTFoundation)
+  3   -[IDEBuildOperationGroup initWithBuildOperations:otherOperations:buildLog:] (in IDEFoundation)
+  4   -[IDEBuildOperationGroup initWithBuildOperations:buildLog:] (in IDEFoundation)
+  5   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 14   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 15   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 16   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 17   main (in xcodebuild)
+ 18   start (in dyld)
+
+<IDEXCBuildSupportCore.IDEXCBuildServiceBuildOperation:0x11ac174d0:AREfc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   -[IDEBuildOperation initWithConfiguration:] (in IDEFoundation)
+  2   specialized IDEXCBuildServiceBuildOperation.init(configuration:) (in IDEXCBuildSupportCore)
+  3   @objc IDEXCBuildServiceBuildOperation.init(configuration:) (in IDEXCBuildSupportCore)
+  4   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  5   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  6   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  9   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 13   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 14   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 15   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 16   main (in xcodebuild)
+ 17   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x11fb66020; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   @objc static DVTOperation.operationWithMainThreadBlock(_:) (in DVTFoundation)
+  3   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 14   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 15   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 16   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 17   main (in xcodebuild)
+ 18   start (in dyld)
+
+<DVTOperation: 0x11aea5940; state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+  9   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 12   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 13   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 14   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 15   main (in xcodebuild)
+ 16   start (in dyld)
+
+<DVTOperation: 0x11ac18290; state = aReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+  9   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 12   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 13   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 14   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 15   main (in xcodebuild)
+ 16   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x11fcb5270; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   static DVTOperation.awaiting(_:) (in DVTFoundation)
+  3   @objc static IDESchemeAction.operationToWaitForFinishedLoadingOperation(of:) (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 14   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 15   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 16   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 17   main (in xcodebuild)
+ 18   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x12d9bd3b0; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   @objc static DVTOperation.operationWithMainThreadBlock(_:) (in DVTFoundation)
+  3   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  4   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  5   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  6   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  7   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  8   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 10   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 14   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 15   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 16   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 17   main (in xcodebuild)
+ 18   start (in dyld)
+
+<DVTOperation: 0x12a61ff40; state = arefc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+  9   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 12   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 13   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 14   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 15   main (in xcodebuild)
+ 16   start (in dyld)
+
+<__DVTSwiftAsyncOperation: 0x11fb66170; state = AReFc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   @objc DVTAsyncOperation.init() (in DVTFoundation)
+  2   static DVTOperation.awaiting(_:) (in DVTFoundation)
+  3   @objc static IDESchemeAction.operationToWaitForFinishedLoadingOperation(of:) (in IDEFoundation)
+  4   -[IDESchemeAction _setUpOperationsForPackageLoadingInWorkspace:handlePreActionsActivityLogSection:isCleanOperation:] (in IDEFoundation)
+  5   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  6   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  7   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:actionCallbackBlock:] (in IDEFoundation)
+  8   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  9   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+ 10   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+ 11   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+ 12   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 13   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 14   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 15   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 16   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 17   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 18   main (in xcodebuild)
+ 19   start (in dyld)
+
+<DVTOperation: 0x12a609230; state = arefc> created at:
+  0   -[DVTOperation init] (in DVTFoundation)
+  1   +[DVTOperation(DVTConveniences) operationWithBlock:] (in DVTFoundation)
+  2   -[IDESchemeAction setUpActionDependenciesForCorePhaseOperation:shouldRunPostActionsBlock:prePhaseEnvironmentPopulationBlock:postPhaseEnvironmentPopulationBlock:handlePreActionsActivityLogSection:handlePostActionsActivityLogSection:buildParameters:schemeActionResultOperation:error:] (in IDEFoundation)
+  3   -[IDEScheme _buildOperationGroupForSchemeOperationParameters:primaryBuildParameters:variantSpecifiers:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:schemeActionRecord:error:] (in IDEFoundation)
+  4   -[IDEScheme _executionOperationForSchemeOperationParameters:build:onlyBuild:buildParameters:title:buildLog:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:act/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'gRPC-C++-grpcpp' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'GTMAppAuth-GTMAppAuth_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'gRPC-C++-gRPCCertificates-Cpp' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'GTMSessionFetcher' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'GTMAppAuth' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'leveldb-library' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'PromisesObjC' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'BoringSSL-GRPC-openssl_grpc' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'BoringSSL-GRPC' from project 'Pods')
+note: Run script build phase 'Create Symlinks to Header Folders' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'BoringSSL-GRPC' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'PromisesObjC-FBLPromises_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'DKImagePickerController' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'GTMSessionFetcher-GTMSessionFetcher_Core_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'SDWebImage-SDWebImage' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'DKPhotoGallery' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'SwiftyGif' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'leveldb-library-leveldb_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'AppAuth-AppAuthCore_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'SDWebImage' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'flutter_local_notifications-flutter_local_notifications_privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'AppAuth' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'DKImagePickerController-DKImagePickerController' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'gRPC-Core-grpc' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'flutter_native_splash-flutter_native_splash_privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'flutter_secure_storage-flutter_secure_storage' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'abseil' from project 'Pods')
+note: Run script build phase 'Create Symlinks to Header Folders' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'abseil' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'gRPC-Core' from project 'Pods')
+note: Run script build phase 'Create Symlinks to Header Folders' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'gRPC-Core' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'gRPC-C++' from project 'Pods')
+note: Run script build phase 'Create Symlinks to Header Folders' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'gRPC-C++' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'abseil-xcprivacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'DKPhotoGallery-DKPhotoGallery' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 11.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'RecaptchaInterop' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 10.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'GTMSessionFetcher-GTMSessionFetcher_Full_Privacy' from project 'Pods')
+/Volumes/sameh/hostify/ios/Pods/Pods.xcodeproj: warning: The iOS deployment target 'IPHONEOS_DEPLOYMENT_TARGET' is set to 9.0, but the range of supported deployment target versions is 12.0 to 26.2.99. (in target 'SwiftyGif-SwiftyGif' from project 'Pods')
+note: Run script build phase 'Run Script' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'Runner' from project 'Runner')
+note: Run script build phase 'Thin Binary' will be run during every build because the option to run the script phase "Based on dependency analysis" is unchecked. (in target 'Runner' from project 'Runner')
+** BUILD INTERRUPTED **
+
+ionCallbackBlock:] (in IDEFoundation)
+  5   -[IDEScheme buildOnlyTaskForSchemeOperationParameters:buildLog:dontActuallyRunCommands:buildParameters:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  6   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:deviceAvailableChecker:error:completionBlock:] (in IDEFoundation)
+  7   -[IDEScheme schemeOperationForSchemeOperationParameters:buildLog:overridingProperties:overridingBuildConfiguration:dontActuallyRunCommands:restorePersistedBuildResults:error:completionBlock:] (in IDEFoundation)
+  8   -[Xcode3CommandLineBuildTool doSchemeBuildWithRunDestinations:runDestinationIdx:wantsSkip:buildActionTimingSection:timingSection:buildAction:isMoreDesinationsPending:actionResultBlock:title:buildLog:executionEnvironment:restorePersistedBuildResults:operationToEnqueue:error:] (in Xcode3Core)
+  9   -[Xcode3CommandLineBuildTool doBuildForBuildAction:timingSection:colorize:colorizeFailure:error:] (in Xcode3Core)
+ 10   -[Xcode3CommandLineBuildTool _buildWithTimingSection:] (in Xcode3Core)
+ 11   -[Xcode3CommandLineBuildTool run] (in Xcode3Core)
+ 12   XcodeBuildMain (in libxcodebuildLoader.dylib)
+ 13   -[XcodebuildPreIDEHandler loadXcode3ProjectSupportAndRunXcode3CommandLineBuildToolWithArguments:] (in xcodebuild)
+ 14   -[XcodebuildPreIDEHandler runWithArguments:] (in xcodebuild)
+ 15   main (in xcodebuild)
+ 16   start (in dyld)
+

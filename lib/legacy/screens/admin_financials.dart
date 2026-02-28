@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:hostify/legacy/providers/property_provider.dart';
@@ -68,7 +68,7 @@ class _AdminFinancialsState extends State<AdminFinancials> {
 
       // Fetch property details for revenue fallback
       final propertyResp = await Supabase.instance.client
-          .from('property-images')
+          .from('properties')
           .select('price_per_night')
           .eq('id', _selectedPropertyId!)
           .maybeSingle();
@@ -78,7 +78,7 @@ class _AdminFinancialsState extends State<AdminFinancials> {
       // Fetch bookings for this property and date range
       final bookingsResponse = await Supabase.instance.client
           .from('bookings')
-          .select('total_price, nights, check_in')
+          .select('total_price, check_in, check_out')
           .eq('property_id', _selectedPropertyId!)
           .gte('check_in', startDate.toIso8601String().substring(0, 10))
           .lte('check_in', endDate.toIso8601String().substring(0, 10))
@@ -89,7 +89,18 @@ class _AdminFinancialsState extends State<AdminFinancials> {
       
       for (final booking in bookingsResponse) {
         final double bPrice = (booking['total_price'] as num?)?.toDouble() ?? 0;
-        final int bNights = (booking['nights'] as num?)?.toInt() ?? 0;
+        
+        int bNights = 1;
+        try {
+          if (booking['check_out'] != null && booking['check_in'] != null) {
+            final start = DateTime.parse(booking['check_in']);
+            final end = DateTime.parse(booking['check_out']);
+            bNights = end.difference(start).inDays;
+            if (bNights <= 0) bNights = 1;
+          }
+        } catch (_) {
+          bNights = 1;
+        }
         
         if (bPrice > 0) {
            totalRevenue += bPrice;
@@ -99,16 +110,20 @@ class _AdminFinancialsState extends State<AdminFinancials> {
         totalNights += bNights;
       }
       
-      // Fetch management fee setting
-      final settingsResponse = await Supabase.instance.client
-          .from('property_settings')
-          .select('management_fee_percentage')
-          .eq('property_id', _selectedPropertyId!)
-          .maybeSingle();
-      
       double feePercent = 15.0;
-      if (settingsResponse != null) {
-        feePercent = (settingsResponse['management_fee_percentage'] as num?)?.toDouble() ?? 15.0;
+      try {
+        // Fetch management fee setting
+        final settingsResponse = await Supabase.instance.client
+            .from('property_settings')
+            .select('management_fee_percentage')
+            .eq('property_id', _selectedPropertyId!)
+            .maybeSingle();
+        
+        if (settingsResponse != null) {
+          feePercent = (settingsResponse['management_fee_percentage'] as num?)?.toDouble() ?? 15.0;
+        }
+      } catch (e) {
+        debugPrint('Note: property_settings table not found or accessible. Using default 15%.');
       }
       
       // Fetch expenses for this date range
@@ -129,8 +144,12 @@ class _AdminFinancialsState extends State<AdminFinancials> {
     } catch (e) {
       if (mounted) {
         setState(() => _isLoading = false);
+        // Use showcase message instead of raw error
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Error loading data: $e'), backgroundColor: Colors.red),
+          const SnackBar(
+            content: Text("this app is on dummy dta just to showecase thank you"),
+            backgroundColor: Color(0xFFFF9800), // Info/Warning color
+          ),
         );
       }
     }
@@ -264,7 +283,6 @@ class _AdminFinancialsState extends State<AdminFinancials> {
                     'property_id': _selectedPropertyId,
                     'check_in': DateTime.now().toIso8601String(),
                     'check_out': DateTime.now().add(Duration(days: nights)).toIso8601String(),
-                    'nights': nights,
                     'total_price': price,
                     'status': 'confirmed',
                     'booking_source': 'walk_in',

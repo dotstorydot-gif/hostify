@@ -7,7 +7,7 @@ class PropertyService {
   /// Fetch all active properties
   Future<List<Map<String, dynamic>>> getActiveProperties() async {
     final response = await _supabase
-        .from('property-images')
+        .from('properties')
         .select('*, property_images(*), property_amenities(*)')
         .eq('status', 'active')
         .order('created_at', ascending: false);
@@ -18,7 +18,7 @@ class PropertyService {
   /// Fetch properties by landlord
   Future<List<Map<String, dynamic>>> getLandlordProperties(String landlordId) async {
     final response = await _supabase
-        .from('property-images')
+        .from('properties')
         .select('*, property_images(*), property_amenities(*)')
         .eq('landlord_id', landlordId)
         .order('created_at', ascending: false);
@@ -29,7 +29,7 @@ class PropertyService {
   /// Get single property details
   Future<Map<String, dynamic>?> getPropertyById(String propertyId) async {
     final response = await _supabase
-        .from('property-images')
+        .from('properties')
         .select('*, property_images(*), property_amenities(*)')
         .eq('id', propertyId)
         .single();
@@ -54,7 +54,7 @@ class PropertyService {
     final userId = _supabase.auth.currentUser?.id;
     if (userId == null) throw Exception('User not logged in');
 
-    final response = await _supabase.from('property-images').insert({
+    final response = await _supabase.from('properties').insert({
       'landlord_id': userId,
       'name': name,
       'description': description,
@@ -79,12 +79,12 @@ class PropertyService {
     Map<String, dynamic> updates,
   ) async {
     updates['updated_at'] = DateTime.now().toIso8601String();
-    await _supabase.from('property-images').update(updates).eq('id', propertyId);
+    await _supabase.from('properties').update(updates).eq('id', propertyId);
   }
 
   /// Delete property
   Future<void> deleteProperty(String propertyId) async {
-    await _supabase.from('property-images').delete().eq('id', propertyId);
+    await _supabase.from('properties').delete().eq('id', propertyId);
   }
 
   /// Add property image
@@ -113,7 +113,7 @@ class PropertyService {
   /// Get property reviews
   Future<List<Map<String, dynamic>>> getPropertyReviews(String propertyId) async {
     final response = await _supabase
-        .from('review-images')
+        .from('reviews')
         .select('*, review_images(*)')
         .eq('property_id', propertyId)
         .eq('status', 'published')
@@ -143,7 +143,7 @@ class PropertyService {
     double? maxPrice,
   }) async {
     var query = _supabase
-        .from('property-images')
+        .from('properties')
         .select('*, property_images(*), property_amenities(*)')
         .eq('status', 'active');
 

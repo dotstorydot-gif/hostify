@@ -1,8 +1,9 @@
-# Uncomment this line to define a global platform for your project
-# platform :ios, '13.0'
+platform :ios, '13.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+install! 'cocoapods', :disable_input_output_paths => true
 
 project 'Runner', {
   'Debug' => :debug,
@@ -39,5 +40,12 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     flutter_additional_ios_build_settings(target)
+    
+    # Fix for Xcode 15 "PhaseScriptExecution failed" on pods with script phases (e.g. BoringSSL-GRPC)
+    target.build_phases.each do |build_phase|
+      if build_phase.respond_to?(:always_out_of_date)
+        build_phase.always_out_of_date = "1"
+      end
+    end
   end
 end

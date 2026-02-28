@@ -62,7 +62,6 @@ class BookingProvider extends ChangeNotifier {
         'check_in': checkIn.toIso8601String(),
         'check_out': checkOut.toIso8601String(),
         'guests': guests,
-        'nights': nights,
         'total_price': totalPrice,
         'status': 'pending', 
         'booking_source': 'hostify',

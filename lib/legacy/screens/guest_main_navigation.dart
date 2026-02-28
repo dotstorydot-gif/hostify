@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:hostify/legacy/screens/guest_dashboard.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/l10n/app_localizations.dart';
-import 'package:provider/provider.dart';
 import 'package:hostify/legacy/screens/guest_my_bookings_screen.dart';
 import 'package:hostify/legacy/screens/booking_screen.dart';
 import 'package:hostify/legacy/screens/profile_screen.dart';
@@ -31,10 +29,30 @@ class _GuestMainNavigationState extends State<GuestMainNavigation> {
         index: _selectedIndex,
         children: [
           const BookingScreen(showNavigation: false), // Search
-          const SafeArea(child: Center(child: Text('Saved properties list here...'))), // Saved
-          const GuestServiceRequestScreen(), // Services
-          const GuestMyBookingsScreen(), // Bookings
-          const ProfileScreen(userRole: 'guest'), // My account
+          SafeArea(
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.favorite_border, size: 80, color: Colors.grey[300]),
+                  const SizedBox(height: 16),
+                  Text(
+                    'No saved properties yet',
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey[800]),
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Tap the heart icon on properties you like\nto save them here for later.',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                  ),
+                ],
+              ),
+            ),
+          ), // Saved
+          GuestServiceRequestScreen(), // Services
+          GuestMyBookingsScreen(), // Bookings
+          ProfileScreen(userRole: 'guest'), // My account
         ],
       ),
       bottomNavigationBar: Container(
@@ -58,24 +76,24 @@ class _GuestMainNavigationState extends State<GuestMainNavigation> {
               icon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.search, size: 26)),
               label: l10n.explore, // "Search"
             ),
-            BottomNavigationBarItem(
-              icon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.favorite_border, size: 26)),
-              activeIcon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.favorite, size: 26)),
+            const BottomNavigationBarItem(
+              icon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.favorite_border, size: 26)),
+              activeIcon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.favorite, size: 26)),
               label: 'Saved', 
             ),
-            BottomNavigationBarItem(
-               icon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.room_service_outlined, size: 26)),
-               activeIcon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.room_service, size: 26)),
+            const BottomNavigationBarItem(
+               icon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.room_service_outlined, size: 26)),
+               activeIcon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.room_service, size: 26)),
                label: 'Services', 
             ),
-            BottomNavigationBarItem(
-               icon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.cases_outlined, size: 26)),
-               activeIcon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.cases, size: 26)),
+            const BottomNavigationBarItem(
+               icon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.cases_outlined, size: 26)),
+               activeIcon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.cases, size: 26)),
                label: 'Bookings', 
             ),
-            BottomNavigationBarItem(
-              icon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.person_outline, size: 26)),
-              activeIcon: const Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.person, size: 26)),
+            const BottomNavigationBarItem(
+              icon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.person_outline, size: 26)),
+              activeIcon: Padding(padding: EdgeInsets.only(bottom: 4), child: Icon(Icons.person, size: 26)),
               label: 'My account',
             ),
           ],

@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
 import 'package:provider/provider.dart';
 import 'package:hostify/legacy/providers/admin_analytics_provider.dart';
 import 'package:hostify/legacy/widgets/analytics_charts.dart';
-import 'package:intl/intl.dart';
 
 class AdminAnalyticsScreen extends StatefulWidget {
   const AdminAnalyticsScreen({super.key});

@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import 'package:go_router/go_router.dart';
 import 'package:hostify/legacy/l10n/app_localizations.dart';
 import 'package:hostify/legacy/screens/admin_property_management.dart';
 import 'package:hostify/legacy/providers/notification_provider.dart';
@@ -20,7 +21,6 @@ import 'package:hostify/legacy/services/icalendar_sync_service.dart';
 import 'package:hostify/legacy/screens/guest_document_upload_screen.dart';
 import 'package:hostify/legacy/screens/settings_screen.dart';
 import 'package:hostify/legacy/screens/admin_service_requests_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:hostify/legacy/services/language_service.dart';
 
@@ -42,7 +42,12 @@ class _AdminDashboardState extends State<AdminDashboard> {
     // Fetch notifications and analytics
     Future.microtask(() {
       context.read<NotificationProvider>().fetchNotifications();
-      context.read<AdminAnalyticsProvider>().fetchAnalytics();
+      // Pass default dates (current year) to prevent RPC failures
+      final now = DateTime.now();
+      context.read<AdminAnalyticsProvider>().fetchAnalytics(
+        startDate: DateTime(now.year, 1, 1),
+        endDate: DateTime(now.year, 12, 31, 23, 59, 59),
+      );
     });
   }
 
@@ -147,38 +152,54 @@ class _AdminDashboardState extends State<AdminDashboard> {
           _buildProfileTab(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
-        height: 70,
-        backgroundColor: Colors.white,
-        indicatorColor: const Color(0xFFFFD700).withValues(alpha: 0.2),
-        selectedIndex: _selectedIndex,
-        onDestinationSelected: (index) => setState(() => _selectedIndex = index),
-        destinations: [
-          const NavigationDestination(
-            icon: Icon(Icons.dashboard_outlined),
-            selectedIcon: Icon(Icons.dashboard, color: Color(0xFFFFD700)),
-            label: 'Dashboard',
-          ),
-          NavigationDestination(
-            icon: Badge(
-              label: Text('$_pendingCount'), // Dynamic badge would require provider
-              isLabelVisible: _pendingCount > 0,
-              child: const Icon(Icons.notifications_outlined),
+      bottomNavigationBar: NavigationBarTheme(
+        data: NavigationBarThemeData(
+          labelTextStyle: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return const TextStyle(color: Color(0xFFFFD700), fontWeight: FontWeight.bold);
+            }
+            return const TextStyle(color: Colors.black54);
+          }),
+          iconTheme: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.selected)) {
+              return const IconThemeData(color: Color(0xFFFFD700));
+            }
+            return const IconThemeData(color: Colors.black54);
+          }),
+        ),
+        child: NavigationBar(
+          height: 70,
+          backgroundColor: Colors.white,
+          indicatorColor: const Color(0xFFFFD700).withValues(alpha: 0.2),
+          selectedIndex: _selectedIndex,
+          onDestinationSelected: (index) => setState(() => _selectedIndex = index),
+          destinations: [
+            const NavigationDestination(
+              icon: Icon(Icons.dashboard_outlined),
+              selectedIcon: Icon(Icons.dashboard),
+              label: 'Dashboard',
             ),
-            selectedIcon: const Icon(Icons.notifications, color: Color(0xFFFFD700)),
-            label: 'Requests',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.calendar_month_outlined),
-            selectedIcon: Icon(Icons.calendar_month, color: Color(0xFFFFD700)),
-            label: 'Bookings',
-          ),
-          const NavigationDestination(
-            icon: Icon(Icons.person_outlined),
-            selectedIcon: Icon(Icons.person, color: Color(0xFFFFD700)),
-            label: 'Profile',
-          ),
-        ],
+            NavigationDestination(
+              icon: Badge(
+                label: Text('$_pendingCount'),
+                isLabelVisible: _pendingCount > 0,
+                child: const Icon(Icons.notifications_outlined),
+              ),
+              selectedIcon: const Icon(Icons.notifications),
+              label: 'Requests',
+            ),
+            const NavigationDestination(
+              icon: Icon(Icons.calendar_month_outlined),
+              selectedIcon: Icon(Icons.calendar_month),
+              label: 'Bookings',
+            ),
+            const NavigationDestination(
+              icon: Icon(Icons.person_outlined),
+              selectedIcon: Icon(Icons.person),
+              label: 'Profile',
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -267,22 +288,19 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   margin: const EdgeInsets.only(bottom: 20),
                   padding: const EdgeInsets.all(20),
                   decoration: BoxDecoration(
-                    color: Colors.red[50],
+                    color: Colors.amber[50],
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: Colors.red[200]!),
+                    border: Border.all(color: const Color(0xFFFFD700)),
                   ),
-                  child: Column(
+                  child: Row(
                     children: [
-                      const Icon(Icons.error_outline, color: Colors.red, size: 40),
-                      const SizedBox(height: 12),
-                      const Text('Failed to load analytics'),
-                      const SizedBox(height: 12),
-                      ElevatedButton.icon(
-                        onPressed: () => analytics.fetchAnalytics(),
-                        icon: const Icon(Icons.refresh),
-                        label: const Text('Retry'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.black,
+                      const Icon(Icons.info_outline, color: Color(0xFFFFD700), size: 24),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          analytics.error!,
+                          style: TextStyle(color: Colors.grey[800], fontSize: 13, fontWeight: FontWeight.w500),
+                          textAlign: TextAlign.start,
                         ),
                       ),
                     ],
@@ -416,7 +434,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                             Text(
                               'Hi, ${provider.userName?.split(' ').first ?? 'Admin'}',
                               style: const TextStyle(
-                                color: Colors.white,
+                                color: Colors.black,
                                 fontSize: 24,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -439,7 +457,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                 // Hostify Logo / Banner Space
                 Center(
                   child: Image.asset(
-                    'assets/images/hostifylogo_new.png',
+                    'assets/images/hostifylogo.png',
                     height: 50,
                     fit: BoxFit.contain,
                   ),
@@ -610,12 +628,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => const AuthScreen()),
-                      );
-                    },
+                    onPressed: () => context.go('/login'),
                     icon: const Icon(Icons.logout),
                     label: const Text('Logout'),
                     style: ElevatedButton.styleFrom(
@@ -772,16 +785,38 @@ class _AdminDashboardState extends State<AdminDashboard> {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: InkWell(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+          // Use GoRouter if available, otherwise fallback to Navigator
+          try {
+            if (destination is AdminPropertyManagement) {
+              context.push('/properties');
+            } else if (destination is AdminFinancials) {
+              context.push('/financials');
+            } else if (destination is SettingsScreen) {
+              context.push('/settings');
+            } else {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+            }
+          } catch (e) {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+          }
         },
         borderRadius: BorderRadius.circular(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 40, color: const Color(0xFFFFD700)),
-            const SizedBox(height: 12),
-            Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(icon, size: 40, color: const Color(0xFFFFD700)),
+              const SizedBox(height: 12),
+              Text(
+                title, 
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         ),
       ),
     );

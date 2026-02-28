@@ -28,7 +28,7 @@ class ReviewService {
         .eq('id', userId)
         .single();
 
-    final response = await _supabase.from('review-images').insert({
+    final response = await _supabase.from('reviews').insert({
       'property_id': propertyId,
       'booking_id': bookingId,
       'guest_id': userId,
@@ -65,7 +65,7 @@ class ReviewService {
     int limit = 10,
   }) async {
     final response = await _supabase
-        .from('review-images')
+        .from('reviews')
         .select('*, review_images(*)')
         .eq('property_id', propertyId)
         .eq('status', 'published')
@@ -81,7 +81,7 @@ class ReviewService {
     if (userId == null) return [];
 
     final response = await _supabase
-        .from('review-images')
+        .from('reviews')
         .select('*, properties(name), review_images(*)')
         .eq('guest_id', userId)
         .order('created_at', ascending: false);
@@ -95,18 +95,18 @@ class ReviewService {
     Map<String, dynamic> updates,
   ) async {
     updates['updated_at'] = DateTime.now().toIso8601String();
-    await _supabase.from('review-images').update(updates).eq('id', reviewId);
+    await _supabase.from('reviews').update(updates).eq('id', reviewId);
   }
 
   /// Delete review
   Future<void> deleteReview(String reviewId) async {
-    await _supabase.from('review-images').delete().eq('id', reviewId);
+    await _supabase.from('reviews').delete().eq('id', reviewId);
   }
 
   /// Get property rating stats
   Future<Map<String, double>> getPropertyRatingStats(String propertyId) async {
     final reviews = await _supabase
-        .from('review-images')
+        .from('reviews')
         .select(
             'overall_rating, cleanliness_rating, location_rating, value_rating, amenities_rating, service_rating, accuracy_rating')
         .eq('property_id', propertyId)

@@ -1,5 +1,5 @@
+import "package:flutter/material.dart";
 import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:hostify/legacy/services/auth_service.dart';
 import 'package:hostify/legacy/l10n/app_localizations.dart';

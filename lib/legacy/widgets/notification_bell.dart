@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:provider/provider.dart';
 import 'package:hostify/legacy/providers/notification_provider.dart';
 import 'package:hostify/legacy/screens/notifications_screen.dart';

@@ -107,7 +107,7 @@ class PdfReceiptService {
           pw.SizedBox(height: 8),
           pw.Text(
             '.Hostify',
-            style: pw.TextStyle(
+            style: const pw.TextStyle(
               fontSize: 16,
               color: PdfColors.white,
             ),
@@ -150,7 +150,7 @@ class PdfReceiptService {
         children: [
           pw.Text(
             label,
-            style: pw.TextStyle(
+            style: const pw.TextStyle(
               fontSize: 12,
               color: PdfColors.grey700,
             ),

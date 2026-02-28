@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import 'package:go_router/go_router.dart';
+import "package:intl/intl.dart";
 import 'package:hostify/legacy/screens/analytics_screen.dart';
 import 'package:hostify/legacy/screens/edit_profile_screen.dart';
 import 'package:hostify/legacy/screens/settings_screen.dart';
@@ -11,7 +13,6 @@ import 'package:hostify/legacy/services/icalendar_sync_service.dart';
 import 'package:hostify/legacy/providers/admin_analytics_provider.dart';
 import 'package:hostify/legacy/providers/app_state_provider.dart';
 import 'package:hostify/legacy/providers/property_provider.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -339,11 +340,11 @@ class _LandlordDashboardState extends State<LandlordDashboard> {
         final name = entry.key;
         final price = entry.value;
         try {
-          final response = await Supabase.instance.client.from('property-images').select('id, ical_url').ilike('name', name).maybeSingle();
+          final response = await Supabase.instance.client.from('properties').select('id, ical_url').ilike('name', name).maybeSingle();
           if (response != null) {
              final id = response['id'];
              final icalUrl = response['ical_url'];
-             await Supabase.instance.client.from('property-images').update({'price_per_night': price}).eq('id', id);
+             await Supabase.instance.client.from('properties').update({'price_per_night': price}).eq('id', id);
              debugPrint('FIXED PRICE: $name -> $price');
              
              // Trigger re-calc
@@ -469,17 +470,17 @@ class _LandlordDashboardState extends State<LandlordDashboard> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Welcome Back,',
                             style: TextStyle(color: Colors.white70, fontSize: 16),
                             overflow: TextOverflow.ellipsis,
                           ),
-                          const SizedBox(height: 5),
-                          const Text(
+                          SizedBox(height: 5),
+                          Text(
                             'Landlord Dashboard',
                             style: TextStyle(
                               color: Colors.white,
@@ -565,6 +566,32 @@ class _LandlordDashboardState extends State<LandlordDashboard> {
                   builder: (context, analytics, child) {
                     if (analytics.isLoading) {
                       return const Center(child: CircularProgressIndicator(color: Colors.white));
+                    }
+                    if (analytics.error != null) {
+                      return Center(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.1),
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(color: Colors.white24),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.info_outline, color: Color(0xFFFFD700), size: 24),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Text(
+                                  analytics.error!,
+                                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
                     }
                     return Row(
                       children: [
@@ -998,7 +1025,7 @@ class _LandlordDashboardState extends State<LandlordDashboard> {
                         title: 'Sign out',
                         textColor: Colors.red,
                         showChevron: false,
-                        onTap: () => Navigator.pop(context),
+                        onTap: () => context.go('/login'),
                       ),
                     ),
                     const SizedBox(height: 40),

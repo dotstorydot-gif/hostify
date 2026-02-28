@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -220,7 +220,7 @@ class ICalendarSyncService {
       debugPrint('Starting Client-Side Sync...');
       
       // 1. Get all properties that might have iCal URLs
-      final props = await _supabase.from('property-images').select('id, ical_url, name');
+      final props = await _supabase.from('properties').select('id, ical_url, name');
       debugPrint('Syncing ${props.length} properties found in database');
       
       for (final prop in props) {
@@ -260,7 +260,7 @@ class ICalendarSyncService {
     try {
        // Fetch property pricing and discounts
        final propData = await _supabase
-           .from('property-images')
+           .from('properties')
            .select('price_per_night, weekly_discount_percent, monthly_discount_percent')
            .eq('id', propId)
            .maybeSingle();

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:hostify/legacy/providers/app_state_provider.dart';
@@ -29,18 +29,18 @@ class _BookingScreenState extends State<BookingScreen> {
   int _adults = 2;
   int _children = 0;
   
-  bool _showAnnouncement = true;
+  final bool _showAnnouncement = true;
   final String _announcementText = "🎉 Extra 5% Discount for Direct Booking Requests!";
   bool _isInit = true;
 
-  Map<String, int> _cityCounts = {};
+  final Map<String, int> _cityCounts = {};
 
   Future<void> _fetchCityCounts() async {
     final supabase = Supabase.instance.client;
     final cities = ['Cairo', 'Hurghada', 'El Gouna', 'Dahab'];
     for (String city in cities) {
       try {
-        final res = await supabase.from('property-images').select('id').ilike('location', '%$city%');
+        final res = await supabase.from('properties').select('id').ilike('location', '%$city%');
         if (mounted) {
           setState(() {
             _cityCounts[city] = (res as List).length;
@@ -90,6 +90,9 @@ class _BookingScreenState extends State<BookingScreen> {
   Future<void> _performSearch() async {
     // Dismiss keyboard if open
     FocusScope.of(context).unfocus();
+    
+    // Always refresh city counts during search/PTR
+    _fetchCityCounts();
 
     await context.read<PropertyProvider>().fetchProperties(
       location: _selectedLocation == 'El Gouna' ? null : _selectedLocation, // If default, fetch all or handle logic
@@ -218,7 +221,7 @@ class _BookingScreenState extends State<BookingScreen> {
     // Navigate to real upload screen instead of mock state change
     Navigator.push(
       context, 
-      MaterialPageRoute(builder: (context) => GuestDocumentUploadScreen())
+      MaterialPageRoute(builder: (context) => const GuestDocumentUploadScreen())
     ).then((_) => _checkVerificationStatus());
   }
 
@@ -383,10 +386,23 @@ class _BookingScreenState extends State<BookingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Top Navigation Chips (Stays only)
+                      // Header Logo Area
                       Row(
                         children: [
-                          _buildHeaderChip(Icons.bed, 'Stays', isActive: true),
+                          Image.asset(
+                            'assets/images/hostifylogo.png',
+                            width: 32,
+                            height: 32,
+                          ),
+                          const SizedBox(width: 8),
+                          const Text(
+                            '.Hostify',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ],
                       ),
                     ],

@@ -1,15 +1,12 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:hostify/legacy/providers/app_state_provider.dart';
 import 'package:hostify/legacy/providers/service_request_provider.dart';
 import 'package:hostify/legacy/providers/notification_provider.dart';
-import 'package:hostify/legacy/widgets/notification_bell.dart';
 import 'package:hostify/legacy/screens/guest_service_request_screen.dart';
 import 'package:hostify/legacy/screens/guest_rating_screen.dart';
-import 'package:hostify/legacy/screens/guest_my_bookings_screen.dart';
 import 'package:hostify/legacy/screens/guest_my_requests_screen.dart';
-import 'package:hostify/legacy/screens/profile_screen.dart';
 
 class GuestDashboard extends StatefulWidget {
   const GuestDashboard({super.key});
@@ -35,7 +32,7 @@ class _GuestDashboardState extends State<GuestDashboard> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     // For now, mockup active booking
-    final Map<String, dynamic>? booking = null; 
+    const Map<String, dynamic>? booking = null; 
 
     return Scaffold(
       backgroundColor: Colors.grey[50],

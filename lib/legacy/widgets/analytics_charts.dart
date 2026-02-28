@@ -1,4 +1,8 @@
+import "package:flutter/material.dart";
+import "package:intl/intl.dart";
+import "package:fl_chart/fl_chart.dart";
 import 'package:hostify/legacy/core/theme/app_colors.dart';
+
 
 class RevenueByPropertyChart extends StatelessWidget {
   final Map<String, dynamic> data;

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class SupabaseConnectionTest extends StatefulWidget {
@@ -39,7 +39,7 @@ class _SupabaseConnectionTestState extends State<SupabaseConnectionTest> {
       // Test 3: Test simple query (count properties)
       try {
         final response = await supabase
-            .from('property-images')
+            .from('properties')
             .select()
             .count(CountOption.exact);
         

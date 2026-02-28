@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/screens/about_us_screen.dart';
 import 'package:hostify/legacy/l10n/app_localizations.dart';
 
@@ -145,8 +145,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     value: _notificationsEnabled,
                     onChanged: (value) => setState(() => _notificationsEnabled = value),
                     activeTrackColor: const Color(0xFFFFD700),
-                    title: Text(l10n.enableNotifications),
-                    subtitle: Text(l10n.receiveUpdates),
+                    title: Text(l10n.enableNotifications, style: const TextStyle(color: Color(0xFF2D3748))),
+                    subtitle: Text(l10n.receiveUpdates, style: const TextStyle(color: Color(0xFF6B7280))),
                   ),
                   const Divider(),
                   SwitchListTile(
@@ -156,8 +156,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ? (value) => setState(() => _emailNotifications = value)
                         : null,
                     activeTrackColor: const Color(0xFFFFD700),
-                    title: Text(l10n.emailNotifications),
-                    subtitle: Text(l10n.getNotifiedViaEmail),
+                    title: Text(l10n.emailNotifications, style: const TextStyle(color: Color(0xFF2D3748))),
+                    subtitle: Text(l10n.getNotifiedViaEmail, style: const TextStyle(color: Color(0xFF6B7280))),
                   ),
                   const Divider(),
                   SwitchListTile(
@@ -167,8 +167,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         ? (value) => setState(() => _pushNotifications = value)
                         : null,
                     activeTrackColor: const Color(0xFFFFD700),
-                    title: Text(l10n.pushNotifications),
-                    subtitle: Text(l10n.receivePushNotifications),
+                    title: Text(l10n.pushNotifications, style: const TextStyle(color: Color(0xFF2D3748))),
+                    subtitle: Text(l10n.receivePushNotifications, style: const TextStyle(color: Color(0xFF6B7280))),
                   ),
                 ],
               ),

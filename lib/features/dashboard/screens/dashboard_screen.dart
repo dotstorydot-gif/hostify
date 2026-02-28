@@ -141,7 +141,7 @@ class DashboardScreen extends ConsumerWidget {
                       ],
                     ),
                   ),
-                  loading: () => const LoadingWidget(),
+                  loading: () => LoadingWidget(),
                   error: (e, _) => Padding(
                     padding: const EdgeInsets.all(20),
                     child: Text('Error: $e',
@@ -177,7 +177,7 @@ class DashboardScreen extends ConsumerWidget {
                           child: Center(
                             child: Column(
                               children: [
-                                Icon(Icons.calendar_today_outlined,
+                                const Icon(Icons.calendar_today_outlined,
                                     size: 48, color: AppColors.textSecondary),
                                 const SizedBox(height: 12),
                                 Text('No upcoming bookings',
@@ -200,12 +200,13 @@ class DashboardScreen extends ConsumerWidget {
                         ),
                       ),
                 loading: () =>
-                    const SliverToBoxAdapter(child: LoadingWidget()),
+                    SliverToBoxAdapter(child: LoadingWidget()),
                 error: (e, _) => SliverToBoxAdapter(
                   child: Text('$e',
                       style: const TextStyle(color: AppColors.error)),
                 ),
               ),
+
 
               const SliverToBoxAdapter(child: SizedBox(height: 20)),
             ],

@@ -12,6 +12,7 @@ class MainShell extends StatelessWidget {
     if (location.startsWith('/bookings')) return 2;
     if (location.startsWith('/guests')) return 3;
     if (location.startsWith('/financials')) return 4;
+    if (location.startsWith('/settings') || location.startsWith('/profile')) return 5;
     return 0;
   }
 
@@ -22,6 +23,7 @@ class MainShell extends StatelessWidget {
       case 2: context.go('/bookings'); break;
       case 3: context.go('/guests'); break;
       case 4: context.go('/financials'); break;
+      case 5: context.go('/settings'); break; // Settings acts as Profile/Settings
     }
   }
 
@@ -33,7 +35,7 @@ class MainShell extends StatelessWidget {
     return Scaffold(
       body: child,
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: AppColors.bgCard,
           border: Border(top: BorderSide(color: AppColors.divider)),
         ),
@@ -68,6 +70,11 @@ class MainShell extends StatelessWidget {
               icon: Icon(Icons.bar_chart_outlined),
               selectedIcon: Icon(Icons.bar_chart, color: AppColors.primary),
               label: 'Financials',
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.person_outline),
+              selectedIcon: Icon(Icons.person, color: AppColors.primary),
+              label: 'Profile',
             ),
           ],
         ),

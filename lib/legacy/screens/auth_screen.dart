@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
+import 'package:go_router/go_router.dart';
 import 'package:hostify/legacy/screens/admin_dashboard.dart';
 import 'package:hostify/legacy/screens/landlord_dashboard.dart';
 import 'package:hostify/legacy/screens/guest_main_navigation.dart';
@@ -8,6 +9,8 @@ import 'package:hostify/legacy/providers/app_state_provider.dart';
 import 'package:hostify/legacy/l10n/app_localizations.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:hostify/legacy/services/seed_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hostify/legacy/core/theme/app_colors.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -20,7 +23,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   // final AuthService _authService = AuthService(); // Removed: Handled by provider
   bool _isLogin = true;
-  String _selectedRole = 'guest';
+  String _selectedRole = 'traveler';
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
 
@@ -162,49 +165,48 @@ class _AuthScreenState extends State<AuthScreen> {
     );
   }
 
-  void _navigateByRole() {
+  void _navigateByRole() async {
     final provider = context.read<AppStateProvider>();
-    // Prefer the role from the database if available (login), otherwise use selected role (signup)
-    final role = provider.userRole ?? _selectedRole;
+    
+    // Give a tiny bit of time for the background profile load to settle if needed
+    if (provider.userRole == null) {
+       await Future.delayed(const Duration(milliseconds: 500));
+       await provider.refresh(); // Force a refresh if still null
+    }
 
+    String? detectedRole = provider.userRole;
+    
+    if (kDebugMode) {
+       print('DEBUG: Role Detection - Provider: $detectedRole, UI Selected: $_selectedRole, IsLogin: $_isLogin');
+    }
+
+    final role = (detectedRole ?? _selectedRole).toLowerCase().trim();
+
+    if (kDebugMode) {
+      print('DEBUG: Executing _performNavigation with role: $role');
+    }
     if (role == 'admin') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const AdminDashboard()),
-      );
+      if (kDebugMode) print('DEBUG: Routing to /admin via GoRouter');
+      context.go('/admin');
     } else if (role == 'landlord') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const LandlordDashboard()),
-      );
-    } else if (role == 'traveler') {
-      // New users who want to book properties
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const GuestMainNavigation(initialIndex: 0)),
-      );
-    } else if (role == 'guest') {
-      // Verified guests with active bookings
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const GuestMainNavigation()),
-      );
+      if (kDebugMode) print('DEBUG: Routing to /landlord via GoRouter');
+      context.go('/landlord');
+    } else if (role == 'traveler' || role == 'guest') {
+      if (kDebugMode) print('DEBUG: Routing to /guest via GoRouter');
+      context.go('/guest');
     } else {
-      // Default to guest terms for unknown roles
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const GuestTermsScreen()),
-      );
+      if (kDebugMode) print('DEBUG: Unknown role, routing to /login via GoRouter');
+      context.go('/login'); // Fallback
     }
   }
 
   /// Upload Avatar
   Future<String> uploadAvatar(XFile imageFile) async {
-     final _currentUser = Supabase.instance.client.auth.currentUser;
-     if (_currentUser == null) throw Exception('User not logged in');
+     final currentUser = Supabase.instance.client.auth.currentUser;
+     if (currentUser == null) throw Exception('User not logged in');
      
      final fileExt = imageFile.path.split('.').last;
-     final fileName = '${_currentUser.id}/${DateTime.now().toIso8601String()}.$fileExt';
+     final fileName = '${currentUser.id}/${DateTime.now().toIso8601String()}.$fileExt';
      
      try {
        final bytes = await imageFile.readAsBytes();
@@ -366,32 +368,6 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                         const SizedBox(height: 20),
 
-                        // Role Selector (Modern Cards)
-                        Text(
-                          l10n.joinAs,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Expanded(child: buildRoleCard('guest', Icons.person_outline, l10n.guest)),
-                            const SizedBox(width: 8),
-                            Expanded(child: buildRoleCard('traveler', Icons.beach_access_outlined, l10n.traveler)),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        Row(
-                          children: [
-                            Expanded(child: buildRoleCard('landlord', Icons.home_work_outlined, l10n.landlord)),
-                            const SizedBox(width: 8),
-                            Expanded(child: buildRoleCard('admin', Icons.admin_panel_settings_outlined, l10n.admin)),
-                          ],
-                        ),
                         const SizedBox(height: 24),
 
                         ElevatedButton(
@@ -502,6 +478,30 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                           ],
                         ),
+                        // Added: Seeding Button for Testing
+                        if (kDebugMode)
+                          TextButton(
+                            onPressed: () async {
+                              try {
+                                await SeedService().seedTestUsers();
+                                await SeedService().seedDummyData();
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text('Database Seeded Successfully!')),
+                                  );
+                                }
+                              } catch (e) {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Seeding failed: $e')),
+                                  );
+                                }
+                              }
+                            },
+                            child: const Text('Seed Test Accounts & Data', style: TextStyle(color: Colors.grey)),
+                          ),
+
+                        const SizedBox(height: 10),
                       ],
                     ),
                   ),
@@ -538,16 +538,11 @@ class _AuthScreenState extends State<AuthScreen> {
               TextButton(
                 onPressed: () {
                   // Navigate to Guest Main Navigation without signing in
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const GuestMainNavigation(initialIndex: 0),
-                    ),
-                  );
+                  context.go('/guest');
                 },
                 child: Text(
                   l10n.continueAsGuest,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
@@ -561,49 +556,6 @@ class _AuthScreenState extends State<AuthScreen> {
         ],
       ),
     ),),),
-    );
-  }
-  Widget buildRoleCard(String role, IconData icon, String label) {
-    bool isSelected = _selectedRole == role;
-    return GestureDetector(
-      onTap: () => setState(() => _selectedRole = role),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.yellow : Colors.grey[50],
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isSelected ? AppColors.yellow : Colors.grey[200]!,
-            width: 2,
-          ),
-          boxShadow: isSelected ? [
-            BoxShadow(
-              color: AppColors.yellow.withValues(alpha: 0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 4),
-            )
-          ] : [],
-        ),
-        child: Column(
-          children: [
-            Icon(
-              icon,
-              size: 20,
-              color: isSelected ? Colors.black : Colors.grey[600],
-            ),
-            const SizedBox(height: 4),
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 12,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.black : Colors.grey[700],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

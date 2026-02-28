@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/foundation.dart';
 
 class SeedService {
   final SupabaseClient _supabase = Supabase.instance.client;
@@ -7,7 +8,7 @@ class SeedService {
   Future<void> seedDummyData() async {
     // Hardcode a consistent UUID for the dummy landlord so properties are globally consistent
     // regardless of who pushes the button (guest, admin, etc).
-    final String landlordId = '00000000-0000-0000-0000-000000000000';
+    const String landlordId = '00000000-0000-0000-0000-000000000000';
 
     // 1. Create Dummy Properties
     final propertyIds = await _seedProperties(landlordId);
@@ -23,57 +24,86 @@ class SeedService {
   }
 
   Future<List<String>> _seedProperties(String landlordId) async {
+    // We'll try to find the actual IDs for these emails first
+    String adminId = '00000000-0000-0000-0000-000000000001';
+    String landlordId = '00000000-0000-0000-0000-000000000002';
+
+    try {
+      final adminProfile = await _supabase.from('user_profiles').select('id').eq('email', 'admin@dot-story.com').maybeSingle();
+      final landlordProfile = await _supabase.from('user_profiles').select('id').eq('email', 'landlord@dot-story.com').maybeSingle();
+      
+      if (adminProfile != null) adminId = adminProfile['id'];
+      if (landlordProfile != null) landlordId = landlordProfile['id'];
+    } catch (e) {
+      if (kDebugMode) print('Warning: Could not fetch real user IDs, using defaults: $e');
+    }
+
     final List<Map<String, dynamic>> propertiesToSeed = [
+      // 4 properties for Admin
       {
-        'landlord_id': landlordId,
-        'name': 'Boutique Sea View Villa',
-        'description': 'Luxury 5-bedroom villa with private pool and panoramic Red Sea views.',
-        'location': 'Hurghada, Red Sea, Egypt',
-        'address': 'Marina Boulevard, Hurghada',
+        'landlord_id': adminId,
+        'name': 'Luxury Cairo Tower Suite',
+        'description': 'Premium 3-bedroom suite with views of the Nile and Cairo Tower.',
+        'location': 'Zamalek, Cairo, Egypt',
+        'address': 'Cairo Tower St, Zamalek',
+        'property_type': 'apartment',
+        'bedrooms': 3,
+        'bathrooms': 3,
+        'max_guests': 6,
+        'price_per_night': 450.0,
+        'status': 'active',
+      },
+      {
+        'landlord_id': adminId,
+        'name': 'Alexandria Mediterranean Villa',
+        'description': 'Stunning sea-front villa with direct beach access in Montaza.',
+        'location': 'Montaza, Alexandria, Egypt',
+        'address': 'Kings Road, Alexandria',
         'property_type': 'villa',
-        'bedrooms': 5,
-        'bathrooms': 4,
-        'max_guests': 10,
-        'price_per_night': 250.0,
+        'bedrooms': 4,
+        'bathrooms': 3,
+        'max_guests': 8,
+        'price_per_night': 320.0,
         'status': 'active',
       },
       {
-        'landlord_id': landlordId,
-        'name': 'El Gouna Golf Apartment',
-        'description': 'Modern apartment overlooking the championship golf course.',
-        'location': 'El Gouna, Red Sea, Egypt',
-        'address': 'Kaf Marina, El Gouna',
-        'property_type': 'apartment',
-        'bedrooms': 2,
+        'landlord_id': adminId,
+        'name': 'Sharm El Sheikh Royal Resort',
+        'description': 'Full resort experience with private beach and coral reef access.',
+        'location': 'Sharm El Sheikh, South Sinai, Egypt',
+        'address': 'Naama Bay, Sharm El Sheikh',
+        'property_type': 'villa',
+        'bedrooms': 6,
+        'bathrooms': 5,
+        'max_guests': 12,
+        'price_per_night': 800.0,
+        'status': 'active',
+      },
+      {
+        'landlord_id': adminId,
+        'name': 'Luxor Ancient Heritage House',
+        'description': 'Authentic Luxor experience near the Valley of the Kings.',
+        'location': 'Luxor, Upper Egypt',
+        'address': 'West Bank, Luxor',
+        'property_type': 'villa',
+        'bedrooms': 4,
         'bathrooms': 2,
-        'max_guests': 4,
-        'price_per_night': 120.0,
+        'max_guests': 8,
+        'price_per_night': 180.0,
         'status': 'active',
       },
+      // 1 property for Landlord
       {
         'landlord_id': landlordId,
-        'name': 'Cozy Lagoon Studio',
-        'description': 'Compact and stylish studio with direct lagoon access.',
-        'location': 'El Gouna, Red Sea, Egypt',
-        'address': 'South Marina, El Gouna',
-        'property_type': 'apartment',
-        'bedrooms': 1,
-        'bathrooms': 1,
-        'max_guests': 2,
-        'price_per_night': 85.0,
-        'status': 'active',
-      },
-      {
-        'landlord_id': landlordId,
-        'name': 'Downtown Cairo Loft',
-        'description': 'Chic loft right in the heart of the city.',
-        'location': 'Cairo, Egypt',
-        'address': 'Tahrir Square, Cairo',
+        'name': 'Dahab Blue Hole Shack',
+        'description': 'Cozy diver\'s paradise near the Blue Hole Dahab.',
+        'location': 'Dahab, South Sinai, Egypt',
+        'address': 'Lighthouse Area, Dahab',
         'property_type': 'apartment',
         'bedrooms': 2,
         'bathrooms': 1,
         'max_guests': 4,
-        'price_per_night': 150.0,
+        'price_per_night': 95.0,
         'status': 'active',
       },
     ];
@@ -82,7 +112,7 @@ class SeedService {
 
     for (var prop in propertiesToSeed) {
       // Check if property with same name already exists for this landlord
-      final existing = await _supabase.from('property-images')
+      final existing = await _supabase.from('properties')
           .select('id')
           .eq('landlord_id', landlordId)
           .eq('name', prop['name'])
@@ -93,7 +123,7 @@ class SeedService {
         continue;
       }
 
-      final response = await _supabase.from('property-images').insert(prop).select().single();
+      final response = await _supabase.from('properties').insert(prop).select().single();
       final id = response['id'] as String;
       ids.add(id);
 
@@ -136,14 +166,12 @@ class SeedService {
 
         await _supabase.from('bookings').insert({
           'property_id': propId,
-          'guest_id': landlordId, // Seeding as self-guest for dummy data
+          'guest_id': '00000000-0000-0000-0000-000000000003', // Test Guest ID
           'check_in': checkIn.toIso8601String(),
           'check_out': checkOut.toIso8601String(),
-          'nights': nights,
           'total_price': (100 + random.nextInt(200)) * nights,
           'status': status,
           'booking_source': ['hostify', 'airbnb', 'booking.com'][random.nextInt(3)],
-          'guests': 2 + random.nextInt(2),
         });
       }
     }
@@ -193,13 +221,100 @@ class SeedService {
       for (int i = 0; i < numRequests; i++) {
         await _supabase.from('service_requests').insert({
           'booking_id': booking['id'],
-          'guest_id': landlordId,
+          'guest_id': '00000000-0000-0000-0000-000000000003',
           'property_id': propId,
           'category': categories[random.nextInt(categories.length)],
           'service_type': types[random.nextInt(types.length)],
           'details': 'Need urgent assistance with service',
           'status': ['pending', 'completed', 'cancelled'][random.nextInt(3)],
         });
+      }
+    }
+  }
+  Future<void> seedTestUsers() async {
+    final List<Map<String, String>> usersToSeed = [
+      {
+        'email': 'guest@dot-story.com',
+        'password': 'guest123',
+        'full_name': 'Test Guest',
+        'role': 'guest'
+      },
+      {
+        'email': 'landlord@dot-story.com',
+        'password': 'landlord123',
+        'full_name': 'Test Landlord',
+        'role': 'landlord'
+      },
+      {
+        'email': 'admin@dot-story.com',
+        'password': 'admin123',
+        'full_name': 'Test Admin',
+        'role': 'admin'
+      },
+    ];
+
+    for (var user in usersToSeed) {
+      try {
+        String? userId;
+        try {
+          // 1. Try to sign up user
+          final response = await _supabase.auth.signUp(
+            email: user['email']!,
+            password: user['password']!,
+            data: {'full_name': user['full_name']},
+          );
+          userId = response.user?.id;
+        } catch (e) {
+          // User might already exist, try to sign in to get ID or fetch from profile
+          if (kDebugMode) print('User ${user['email']} might already exist: $e');
+        }
+
+        // If signup didn't give US an ID, find it by email in user_profiles
+        if (userId == null) {
+          final profile = await _supabase.from('user_profiles')
+              .select('id')
+              .eq('email', user['email']!)
+              .maybeSingle();
+          userId = profile?['id'];
+        }
+
+        // If still null, try to sign in to get the ID (Supabase Auth usually gives the ID on sign-in)
+        if (userId == null) {
+          try {
+            final authResponse = await _supabase.auth.signInWithPassword(
+              email: user['email']!,
+              password: user['password']!,
+            );
+            userId = authResponse.user?.id;
+          } catch (e) {
+            if (kDebugMode) print('Could not retrieve ID via sign-in for ${user['email']}: $e');
+          }
+        }
+
+        if (userId != null) {
+          // 2. Ensure profile exists
+          await _supabase.from('user_profiles').upsert({
+            'id': userId,
+            'email': user['email'],
+            'full_name': user['full_name'],
+          });
+
+          // 3. Add role
+          await _supabase.from('user_roles').upsert({
+            'user_id': userId,
+            'role': user['role'],
+            'is_active': true,
+          }, onConflict: 'user_id,role');
+        }
+      } catch (e) {
+        if (kDebugMode) {
+          final errorStr = e.toString();
+          if (errorStr.contains('42501') || errorStr.contains('Forbidden')) {
+            print('Note: Role/Profile for ${user['email']} already exists or restricted (RLS). Skipping update.');
+          } else {
+            print('Error seeding user ${user['email']}: $e');
+          }
+        }
       }
     }
   }

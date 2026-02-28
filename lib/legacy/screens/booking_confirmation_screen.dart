@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/screens/booking_screen.dart';
 
 class BookingConfirmationScreen extends StatelessWidget {
@@ -20,8 +20,8 @@ class BookingConfirmationScreen extends StatelessWidget {
               const Spacer(),
               Container(
                 padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFE8F5E9),
+                decoration: const BoxDecoration(
+                  color: Color(0xFFE8F5E9),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(

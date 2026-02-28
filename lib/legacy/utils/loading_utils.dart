@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 /// Reusable loading widgets and utilities
 class LoadingUtils {
@@ -93,13 +93,13 @@ class _SkeletonItem extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Column(
+      child: const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _ShimmerBox(width: 200, height: 16),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           _ShimmerBox(width: 150, height: 14),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           _ShimmerBox(width: double.infinity, height: 12),
         ],
       ),

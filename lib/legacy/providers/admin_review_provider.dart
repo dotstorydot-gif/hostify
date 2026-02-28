@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AdminReviewProvider extends ChangeNotifier {
@@ -23,7 +23,7 @@ class AdminReviewProvider extends ChangeNotifier {
     try {
       // Fetch all reviews with property details
       final response = await _supabase
-          .from('review-images')
+          .from('reviews')
           .select('''
             *,
             properties (id, name),
@@ -45,7 +45,7 @@ class AdminReviewProvider extends ChangeNotifier {
   Future<void> fetchProperties() async {
     try {
       final response = await _supabase
-          .from('property-images')
+          .from('properties')
           .select('id, name')
           .order('name');
       
@@ -69,7 +69,7 @@ class AdminReviewProvider extends ChangeNotifier {
   Future<void> updateReviewStatus(String reviewId, String status) async {
     try {
       await _supabase
-          .from('review-images')
+          .from('reviews')
           .update({'status': status})
           .eq('id', reviewId);
       
@@ -90,7 +90,7 @@ class AdminReviewProvider extends ChangeNotifier {
   Future<void> deleteReview(String reviewId) async {
     try {
       await _supabase
-          .from('review-images')
+          .from('reviews')
           .delete()
           .eq('id', reviewId);
       

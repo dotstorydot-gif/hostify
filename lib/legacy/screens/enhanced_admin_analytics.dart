@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:hostify/legacy/providers/admin_analytics_provider.dart';
 import 'package:hostify/legacy/services/icalendar_sync_service.dart';
+import 'package:hostify/legacy/utils/error_handler.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class EnhancedAdminAnalytics extends StatefulWidget {
@@ -33,7 +34,7 @@ class _EnhancedAdminAnalyticsState extends State<EnhancedAdminAnalytics> {
   Future<void> _loadProperties() async {
     try {
       final response = await Supabase.instance.client
-          .from('property-images')
+          .from('properties')
           .select('id, name')
           .order('name');
       setState(() {
@@ -140,22 +141,23 @@ class _EnhancedAdminAnalyticsState extends State<EnhancedAdminAnalytics> {
           
           if (provider.error != null) {
             return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(40),
+              child: Container(
+                margin: const EdgeInsets.all(40),
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                  color: Colors.amber[50],
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: const Color(0xFFFFD700)),
+                ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    const Icon(Icons.error_outline, color: Colors.red, size: 60),
+                    const Icon(Icons.info_outline, color: Color(0xFFFFD700), size: 48),
                     const SizedBox(height: 16),
-                    Text('Error: ${provider.error}', textAlign: TextAlign.center),
-                    const SizedBox(height: 16),
-                    ElevatedButton.icon(
-                      onPressed: () => _fetchAnalytics(),
-                      icon: const Icon(Icons.refresh),
-                      label: const Text('Retry'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
+                    const Text(
+                      ErrorHandler.SHOWCASE_MESSAGE,
+                      style: TextStyle(color: Color(0xFF1F2937), fontSize: 15, fontWeight: FontWeight.w500),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ),

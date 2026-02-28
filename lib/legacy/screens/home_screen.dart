@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:hostify/legacy/screens/auth_screen.dart';
 
 class HomeScreen extends StatelessWidget {

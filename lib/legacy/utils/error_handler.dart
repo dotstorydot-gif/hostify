@@ -1,7 +1,9 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
 /// Centralized error handling utility
 class ErrorHandler {
+  static const String SHOWCASE_MESSAGE = "this app is on dummy dta just to showecase thank you";
+
   /// Show error snackbar with consistent styling
   static void showError(BuildContext context, String message, {Duration? duration}) {
     if (!context.mounted) return;
@@ -14,7 +16,7 @@ class ErrorHandler {
             const SizedBox(width: 12),
             Expanded(
               child: Text(
-                message,
+                SHOWCASE_MESSAGE,
                 style: const TextStyle(fontSize: 14),
               ),
             ),
@@ -132,7 +134,7 @@ class ErrorHandler {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(message),
+            const Text(SHOWCASE_MESSAGE),
             if (details != null) ...[
               const SizedBox(height: 12),
               Container(
@@ -165,80 +167,7 @@ class ErrorHandler {
   
   /// Parse Supabase error and return user-friendly message
   static String parseError(dynamic error) {
-    if (error == null) return 'An unknown error occurred';
-    
-    final errorString = error.toString().toLowerCase();
-    
-    // Network errors
-    if (errorString.contains('socketexception') ||
-        errorString.contains('network') ||
-        errorString.contains('connection')) {
-      return 'Network error. Please check your internet connection.';
-    }
-    
-    // Authentication errors
-    if (errorString.contains('invalid_grant') ||
-        errorString.contains('invalid credentials')) {
-      return 'Invalid email or password.';
-    }
-    
-    if (errorString.contains('user already exists') ||
-        errorString.contains('already registered')) {
-      return 'This email is already registered.';
-    }
-    
-    if (errorString.contains('email not confirmed')) {
-      return 'Please verify your email before logging in.';
-    }
-    
-    // Database errors
-    if (errorString.contains('foreign key')) {
-      return 'Cannot complete operation due to related data.';
-    }
-    
-    if (errorString.contains('unique constraint')) {
-      return 'This record already exists.';
-    }
-    
-    if (errorString.contains('not found')) {
-      return 'The requested resource was not found.';
-    }
-    
-    // Permission errors
-    if (errorString.contains('permission denied') ||
-        errorString.contains('insufficient_privileges')) {
-      return 'You don\'t have permission to perform this action.';
-    }
-    
-    // File upload errors
-    if (errorString.contains('file size')) {
-      return 'File size exceeds the maximum limit.';
-    }
-    
-    if (errorString.contains('file type')) {
-      return 'This file type is not allowed.';
-    }
-    
-    // Default: Return cleaned error message
-    return _cleanErrorMessage(errorString);
-  }
-  
-  /// Clean up technical error messages for users
-  static String _cleanErrorMessage(String error) {
-    // Remove technical prefixes
-    error = error.replaceAll(RegExp(r'exception: |error: |postgresql '), '');
-    
-    // Capitalize first letter
-    if (error.isNotEmpty) {
-      error = error[0].toUpperCase() + error.substring(1);
-    }
-    
-    // Ensure it ends with a period
-    if (!error.endsWith('.')) {
-      error += '.';
-    }
-    
-    return error;
+    return SHOWCASE_MESSAGE;
   }
   
   /// Handle async errors with loading state
